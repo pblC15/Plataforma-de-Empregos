@@ -1,0 +1,16 @@
+.conteudo-sobre h3{
+    color: rgb(120, 120, 120);
+    margin-top: 20px;
+    font-size: 25px;
+}
+.conteudo-sobre p{
+    color: rgb(150, 150, 150);
+    margin: 20px 0;
+}
+.conteudo-sobre p a{
+    color: #0077b5;
+    text-decoration: none;
+}
+.conteudo-sobre p a:hover{
+    text-decoration: underline;
+}

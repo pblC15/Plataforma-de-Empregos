@@ -1,0 +1,130 @@
+.anuncio-principal .formulario label, .formulario-contato1 label{
+    display: inline-block;
+    width: 100%;
+    font-size: 21px;
+    margin-top: 20px;
+    color: rgb(150, 150, 150);
+}
+.anuncio-principal .formulario label:nth-of-type(1){
+    margin-top: 20px; 
+}
+.anuncio-principal .formulario label:nth-of-type(7){
+    width: 22%;
+}
+.anuncio-principal  .formulario label:nth-of-type(3){
+    width: 36%;
+    margin: 20px 0 0 0 !important;
+}
+.anuncio-principal  .formulario label:nth-of-type(12){
+    font-size:12px;
+    font-weight: 600;
+    width: 610px;
+    margin-top: 30px;
+}
+
+.anuncio-principal .formulario input[type=text], input[type=email], .formulario-contato1 input[type=text], .formulario-contato1 input[type=email]{
+    display: inline-block;
+    width: 100%;
+    padding: 8px 2%;
+    font-size: 18px;
+    margin-top: 5px;
+    color: black;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    
+}
+.anuncio-principal .formulario input[type=number]{
+    display: inline-block;
+    width:8%;
+    padding: 3px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px 1px #ccc;
+}
+.anuncio-principal .formulario select, .formulario-contato1 select{
+    font-size: 16px;
+    padding: 5px;
+    color: rgb(100, 100 ,100);
+    margin-top: 20px;
+    border: 1px solid #ccc
+    
+}
+.anuncio-principal .formulario textarea, .formulario-contato1 textarea{
+    padding: 8px;
+    font-size: 18px;
+    margin: 10px 0 15px 0;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    resize: none;
+    width: 100%;
+}
+.anuncio-principal .formulario .checkmensag{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    flex-direction: row;
+}
+.anuncio-principal .formulario .checkmensag label{
+    position: relative;
+    top: -21px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    color: rgb(100, 98, 98);
+    font-weight: 600;
+}
+.anuncio-principal .formulario input[type=checkbox]{
+    display: block;
+    height: 10px;
+    margin-right: 5px;
+}
+.anuncio-principal .formulario input[type=submit], .formulario-contato1 input[type=submit]{
+    display: inline-block;
+    width: 50%;
+    padding: 10px;
+    margin: 25px 0;
+    background-color: #0077b5;
+    border: none;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    left: 25%;
+    cursor: pointer;
+}
+.anuncio-principal .formulario input[type=submit]:hover, .formulario-contato1 input[type=submit]:hover{
+    border-bottom: 4px solid #57a3cc;
+}
+
+.formulario input, textarea{
+    outline: 0;
+}
+/***************MEDIA QUERIES***************************/
+@media screen and (max-width: 768px){
+    .anuncio-principal .formulario label, .formulario-contato1 label{
+        width: 100%;
+        text-align: center;
+    }
+    .anuncio-principal .formulario input[type="number"]{
+        width: 20%; 
+    }
+    .anuncio-principal .formulario label:nth-of-type(3) {
+        width: 80%;
+    }
+    .anuncio-principal .formulario select, .formulario-contato1 select {
+        display: inline-block;
+        width: 100%;
+    }
+    .anuncio-principal .formulario label:nth-of-type(7) {
+        width: 100%;
+        display: inline-block;
+    }
+    .formulario-contato1 label:nth-of-type(3) {
+        width: 100%;
+    }
+    .anuncio-principal .formulario input[type=submit], .formulario-contato1 input[type=submit]{
+        left: 0;
+    }
+
+}   
