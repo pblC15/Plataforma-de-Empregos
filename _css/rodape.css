@@ -1,0 +1,152 @@
+footer{
+    position: relative;
+    background-color: rgb(44, 43, 43);
+    border-top: 3px solid #0077b5;
+}
+.footer-side1 .div_seta{
+    width: 100%;
+    position: relative;
+    top: -17px;
+    left:30%;
+    text-align: center;
+}
+.footer-side1 .div_seta .img_cima{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+footer .footer-side1{
+    width: 50%;
+    margin-top: 0px;
+    float: left;
+}
+footer .container{
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row;
+}
+.menu-footer{
+    display: inline-block;
+    width: 100%;
+}
+.menu-footer ul{
+    list-style: none;
+}
+.menu-footer ul li{
+    float: left;
+    width: calc(100% / 4);
+    padding: 10px 2%;
+    
+}
+.menu-footer ul li a{
+    text-decoration: none;
+    color: #0077b5;
+    font-size: 19px;
+    font-weight: normal;
+    font-style: italic;
+    padding: 0 2%;
+}
+.menu-footer ul li a:hover{
+    text-decoration: underline;
+    color: white;
+    transition: 0.2s; 
+}
+.submenu-footer{
+    display: inline-block;
+    width: 100%;
+}
+.submenu-footer ul{
+    list-style: none;
+
+}
+.submenu-footer ul li{
+    float: left;
+    padding: 10px 2%;
+}
+.submenu-footer ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 2%;
+}
+.submenu-footer ul li a:hover{
+    color: #0077b5;
+}
+.footer-lateral{
+    margin-bottom: 30px;
+    width: 500px;
+    padding: 0 2%;
+    text-align: right;
+}
+.ultimo-footer{
+    display:flex;
+    flex-direction: rows;
+    align-items: justify;
+    background-color: #0077b5;
+    width: 100%;
+}
+.ultimo-footer p{
+    margin: 3px auto; 
+    color: rgb(219, 212, 212);
+    font-style: Bold;
+    font-size: 16px;
+    font-weight: 600;
+}
+@media screen and (max-width: 960px){
+    footer .container{
+        flex-direction: column;
+    }
+    .footer-side1 .div_seta{
+        position: relative;
+        top: -17px;
+        left:0;
+    }    
+    footer .footer-side1{
+        width: 100%;
+        float: none;
+    }
+    .menu-footer{
+        width: 50%;
+        float: left;
+        
+    }
+    .menu-footer ul li{
+        float: none;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .submenu-footer{
+        width: 50%;
+        float: left;
+        text-align: center;
+    }
+
+    .submenu-footer ul li{
+        float: none;
+        display: inline-block;
+        width: 100%; 
+        text-align: center;
+    }
+    .footer-lateral{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    .footer-lateral p{
+        text-align:center;
+        width: 100%;
+        display: inline-block;
+    }
+    .ultimo-footer{
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 2%;
+    }
+
+
+}
