@@ -1,5 +1,29 @@
 <?php 
-    require_once "conx.php";
+    //  require_once 'config.php';
+    require_once 'conx.php';
+ 
+    //  if(isset($_SESSION["numLogin"])){
+ 
+    //      if(isset($_GET["num"])){
+    
+    //          $n1=$_GET["num"];
+             
+    //      }else if(isset($_POST["num"])){
+             
+    //          $n1=$_POST["num"];
+    //      }
+         
+    //      $n2=$_SESSION["numLogin"];
+         
+    //      if($n1!=$n2){
+    //          echo "<p>Login não efetuado</p>";
+    //          exit;
+    //      }
+    //  }else{
+    //      echo "<p>Esse Login não foi efetuado</p>";
+       
+    //      exit;
+    //  }
 
 ?>
 <!DOCTYPE html>
@@ -80,7 +104,9 @@
                                         
                                         <div class='candidatar'>
                                             <h3>Para se candidatar: </h3>
-                                            <p>Para se candidatar a vaga você precisa está dentro dos requisitos da exigidos e mandar email para <span>".$exibe['email']."</span> com assunto ''".$exibe['nome_V']."''.É imprescindével colocar no email ''Essa vaga foi divulgada pela GoolbeeEmpregos com o intuito de me ajudar a entrar no mercado de Trabalho''.</p>
+
+                                            <p>Para se candidatar a vaga você precisa está dentro dos requisitos exigidos informado a cima, e mandar email para <span>".$exibe['email']."</span> com assunto ''".$exibe['nome_V']."''.É imprescindével colocar no email ''Essa vaga foi divulgada pela GoolbeeEmpregos com o intuito de me ajudar a entrar no mercado de Trabalho''.</p>
+
 
                                             <h4>A vaga se encerra em : ".$exibe['periodo_V']."</h4>
 
@@ -108,7 +134,9 @@
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
                 </aside>
-                < <aside class='lateral'>
+
+                <aside class='lateral'>
+
                         <div class="form-lateral">
                             <h2>Receba as vagas de sua preferência</h2>
                             <!--Fzer o back end -->

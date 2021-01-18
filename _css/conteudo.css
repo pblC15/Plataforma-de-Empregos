@@ -1,13 +1,13 @@
-
-section.conteudo .anuncio-principal{
+section.conteudo .anuncio-principal {
     float: left;
-    width: 70%;
+    width: 65%;
     height: auto;
-/*     border-left: 2px solid  #ccc;
+    /*     border-left: 2px solid  #ccc;
     border-right: 2px solid #ccc; */
     padding: 10px;
 }
-section.conteudo .anuncio-principal h2{
+
+section.conteudo .anuncio-principal h2 {
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -15,31 +15,36 @@ section.conteudo .anuncio-principal h2{
     font-size: 30px;
     margin: 20px 0;
 }
-section.conteudo .breve-vaga{
+
+section.conteudo .breve-vaga {
     border: 3px solid #ccc;
-    box-shadow: 1px 1px 10px 1px #ccc; 
+    box-shadow: 1px 1px 10px 1px #ccc;
     position: relative;
     width: 100%;
     margin-top: 25px;
-    padding: 10px; 
+    padding: 10px;
     display: inline-block;
 }
-.breve-vaga .img-vaga{
+
+.breve-vaga .img-vaga {
     float: left;
     width: 45%;
     height: 200px;
     margin-right: 20px;
 }
-.breve-vaga .img-vaga img{
+
+.breve-vaga .img-vaga img {
     width: 100%;
     height: 100%;
     border: 1px solid #ccc;
 }
-.breve-vaga .desc-vaga{
+
+.breve-vaga .desc-vaga {
     width: 50%;
     float: left;
 }
-.breve-vaga .desc-vaga h3{
+
+.breve-vaga .desc-vaga h3 {
     width: 100%;
     color: #4096c5;
     text-decoration: underline;
@@ -47,10 +52,12 @@ section.conteudo .breve-vaga{
     text-align: left;
     font-weight: 600;
 }
-.breve-vaga .desc-vaga p{
+
+.breve-vaga .desc-vaga p {
     margin-top: 15px;
 }
-.breve-vaga .desc-vaga a{
+
+.breve-vaga .desc-vaga a {
     float: right;
     margin-top: 10px;
     padding: 5px;
@@ -59,8 +66,11 @@ section.conteudo .breve-vaga{
     text-decoration: none;
     color: white;
 }
+
+
 /**********PAGINACÃO**********/
-.paginacao{
+
+.paginacao {
     display: inline-block;
     width: 100%;
     height: 45px;
@@ -71,123 +81,135 @@ section.conteudo .breve-vaga{
     line-height: 45px;
     background-color: #0077b5;
 }
-.paginacao a{
+
+.paginacao a {
     margin-right: 20px;
     text-decoration: none;
     color: white;
-    
 }
-.paginacao .num_pg{
+
+.paginacao .num_pg {
     background-color: #ccc;
     color: black;
     padding: 5px 10px;
     border-radius: 10px;
 }
-.paginacao .pri_pg{
+
+.paginacao .pri_pg {
     padding: 5px 10px;
     border-radius: 15px;
-    background-color: #ccc; 
+    background-color: #ccc;
     color: black;
     font-size: 18px;
 }
-.paginacao .ult_pg{
+
+.paginacao .ult_pg {
     padding: 5px 10px;
     border-radius: 10px;
     background-color: #ccc;
     color: black;
     font-size: 18px;
 }
+
+
 /*****************ANUNCIO-VAGA**************/
-.anuncio-principal .descricao-vaga{
+
+.anuncio-principal .descricao-vaga {
     width: 100%;
     padding: 10px;
 }
-.anuncio-principal .titulo-vaga{
+
+.anuncio-principal .titulo-vaga {
     margin: 5px;
     padding-bottom: 15px;
 }
 
-.anuncio-principal .titulo-vaga a{
+.anuncio-principal .titulo-vaga a {
     font-size: 14px;
     margin: 0 10px;
     text-decoration: none;
     color: rgb(150, 150, 150);
     font-weight: 600;
 }
-.anuncio-principal .titulo-vaga a:hover{
+
+.anuncio-principal .titulo-vaga a:hover {
     text-decoration: underline;
     color: #0077b5;
 }
-.anuncio-principal .titulo-vaga h3{
+
+.anuncio-principal .titulo-vaga h3 {
     font-size: 30px;
     color: rgb( 150, 150, 150);
     margin: 20px 0;
 }
-.data-icone{
+
+.data-icone {
     display: flex;
     flex-direction: row;
     float: left;
-    width: 35%;
     padding: 5px;
-
     box-shadow: 1px 1px 10px 1px #ccc;
-
 }
-.data-icone p{
-    margin-top: -2px;
-    margin-left: 5px; 
-    font-size: 13px;
-}
-.tipo-icone{
-    display: flex;
-    flex-direction: row;
-    float: left;
-    width:35%;
-    padding: 5px;
 
-    box-shadow: 1px 1px 10px 1px #ccc;
-
-}
-.tipo-icone p{
+.data-icone p {
     margin-top: -2px;
     margin-left: 5px;
     font-size: 13px;
 }
-.detalhe-vaga{
+
+.tipo-icone {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    padding: 5px;
+    margin-left: 50px;
+    box-shadow: 1px 1px 10px 1px #ccc;
+}
+
+.tipo-icone p {
+    margin-top: -2px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.detalhe-vaga {
     border-top: 3px solid #2f98d1;
 }
-.detalhe-vaga p{
+
+.detalhe-vaga p {
     margin-top: 30px;
     font-size: 19px;
     font-weight: 600;
-    color: rgb(120, 120 ,120);
+    color: rgb(120, 120, 120);
 }
-span.dados{
+
+span.dados {
     color: black;
     font-size: 18px;
     font-weight: 500;
-
 }
-.candidatar{
+
+.candidatar {
     margin-top: 25px;
     padding: 5px;
     color: rgb(120, 120, 120);
-    
-
 }
-.candidatar h3{
+
+.candidatar h3 {
     font-size: 29px;
     color: rgb(150, 150, 150);
     box-shadow: 1px 1px 10px 1px #ccc;
     background-color: #ccc;
     text-align: center;
 }
-.candidatar p{
+
+.candidatar p {
     font-size: 19px;
     font-weight: 600;
     text-align: left;
 }
-.candidatar h4{
+
+.candidatar h4 {
     margin-top: 20px;
     font-weight: 600;
     font-size: 23px;
@@ -195,13 +217,17 @@ span.dados{
     background-color: #ccc;
     text-align: center;
 }
-.candidatar span{
+
+.candidatar span {
     text-decoration: underline;
     color: #0077b5;
     font-weight: 600;
 }
+
+
 /*CONTEUDO LATERAL*/
-aside.lateral{
+
+aside.lateral {
     float: right;
     width: 30%;
     height: auto;
@@ -209,8 +235,9 @@ aside.lateral{
     border: 1px solid #ccc;
     box-shadow: 1px 1px 10px #ccc;
     text-align: center;
-    margin: 10px 0; 
+    margin: 10px 0;
 }
+
 
 /*  aside.conteudo-lateral{
     float: right;
@@ -222,19 +249,23 @@ aside.lateral{
     text-align: center;
     margin-top: 8px;
 }  */
-aside .conteudo-lateral h2{
+
+aside .conteudo-lateral h2 {
     display: inline-block;
     width: 100%;
     background: linear-gradient(to bottom, #0066ff 10%, #3399ff 68%);
     color: white;
 }
-aside .conteudo-lateral img{
+
+aside .conteudo-lateral img {
     width: 100%;
     height: 200px;
-}   
+}
+
 
 /*************PESQUISAR**************/
-.box_pesquisa button{
+
+.box_pesquisa button {
     border: 0;
     cursor: pointer;
     position: relative;
@@ -242,87 +273,105 @@ aside .conteudo-lateral img{
     left: 0;
     background-color: white;
 }
-.alerta-mensagem{
+
+.alerta-mensagem {
     display: inline-block;
     width: 100%;
     background-color: rgb(218, 51, 51);
     color: #ccc;
     font-size: 21px;
     text-align: center;
-    margin: 20px 0 180px 0; 
+    margin: 20px 0 180px 0;
 }
-/****PAGINA CONCURSO*********/
-.box-concurso p{
 
-}
-.box-concurso table{
+
+/****PAGINA CONCURSO*********/
+
+.box-concurso p {}
+
+.box-concurso table {
     margin: 50px 2%;
 }
-.box-concurso table, th, td{
+
+.box-concurso table,
+th,
+td {
     border: 3px solid #ccc;
     border-collapse: collapse;
-
 }
-.box-concurso td{
+
+.box-concurso td {
     font-size: 16px;
     font-weight: 600;
-
 }
-.box-concurso th, td{
+
+.box-concurso th,
+td {
     padding: 8px;
 }
-.box-concurso td a{
+
+.box-concurso td a {
     color: black;
     text-decoration: none;
 }
-.box-concurso td a:hover{
-    text-decoration:underline;
+
+.box-concurso td a:hover {
+    text-decoration: underline;
 }
+
+
 /*FORMULARIO LATERAL*/
+
 .form-lateral {
     margin-top: 0px;
 }
-.form-lateral h2{
+
+.form-lateral h2 {
     font-size: 17px;
     background: linear-gradient(to bottom, #0066ff 10%, #3399ff 68%);
-    color:white;
+    color: white;
     padding: 10px 0;
 }
-.form-lateral form{
-    padding: 10px 2%;  
+
+.form-lateral form {
+    padding: 10px 2%;
     text-align: center;
 }
-.form-lateral form label{
+
+.form-lateral form label {
     display: inline-block;
     width: 100%;
     font-size: 16px;
-    margin-top: 10px;  
+    margin-top: 10px;
     padding: 10px 5px;
     color: rgb(150, 150, 150);
 }
-.form-lateral form label:nth-of-type(3){
+
+.form-lateral form label:nth-of-type(3) {
     width: 50%;
     float: left;
 }
+
 .form-lateral form select {
     width: 40%;
     float: left;
     font-size: 16px;
-    margin-top:20px; 
+    margin-top: 20px;
     border: 1px solid #ccc;
     outline: 0;
+}
 
-}
-.form-lateral form input{
+.form-lateral form input {
     border: 1px solid #ccc;
-    width:90%;
+    width: 90%;
     outline: 0;
-    height: 35px; 
+    height: 35px;
     padding-left: 8px;
-    font-size: 16px; 
+    font-size: 16px;
     outline: 0;
 }
-.form-lateral form input[type=submit]{
+
+.form-lateral form input[type=submit] {
     display: inline-block;
     width: 90%;
     margin: 10px 0;
@@ -331,15 +380,16 @@ aside .conteudo-lateral img{
     font-size: 20px;
     color: white;
     cursor: pointer;
-    height: 50px; 
+    height: 50px;
 }
-.form-lateral form input[type=submit]:hover{
+
+.form-lateral form input[type=submit]:hover {
     border-bottom: 4px solid #57a3cc;
 }
 
-.form-lateral .mensagemEmail{
+.form-lateral .mensagemEmail {
     display: inline-block;
-    margin: 10px 2%; 
+    margin: 10px 2%;
     color: red;
     font-size: 16px;
     font-weight: 600;
@@ -347,15 +397,16 @@ aside .conteudo-lateral img{
 
 
 /**********MEDIA QUERIES**********************/
-@media screen and (max-width: 838px){
-    section.conteudo .anuncio-principal{
+
+@media screen and (max-width: 838px) {
+    section.conteudo .anuncio-principal {
         float: none;
         display: inline-block;
         width: 100%;
         height: auto;
         padding: 10px;
     }
-    .container{
+    .container {
         text-align: center;
     }
     /*Pagina anuncio-vaga*/
@@ -370,34 +421,39 @@ aside .conteudo-lateral img{
     .tipo-icone {
         float: left;
         width: 50%;
-
+        margin-left: 0px;
     }
-    .div_lateral{
+    .div_lateral {
         margin: 10px 3%;
         text-align: center;
     }
-    aside.lateral{
+    aside.lateral {
         display: inline-block;
         width: 90%;
         float: none;
     }
 }
-@media screen and (max-width: 500px){
 
-    .breve-vaga .img-vaga{
+@media screen and (max-width: 500px) {
+    .breve-vaga .img-vaga {
         width: 100%;
         float: none;
     }
-    .breve-vaga .desc-vaga{
+    .breve-vaga .desc-vaga {
         width: 100%;
         float: none;
         text-align: center;
     }
-    .breve-vaga .desc-vaga a{
+    .breve-vaga .desc-vaga a {
         float: none;
         display: inline-block;
         width: 50%;
         margin-top: 10px;
     }
-
+    .data-icone {
+        width: 100%;
+    }
+    .tipo-icone {
+        width: 100%;
+    }
 }

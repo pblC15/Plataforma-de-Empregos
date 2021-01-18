@@ -1,9 +1,3 @@
-<?php 
-
-require_once 'config.php';
-
-?>
-
 <!DOCTYPE html>
 <html lang='pt-br'>
     <head>
@@ -80,11 +74,11 @@ require_once 'config.php';
                         //Se tiver vazia seta o 1
                         $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
                         //Quantidade de itens
-                        $qtd_item = 10;
+                        $qtd_item = 5;
 
                         $inicio = ($qtd_item * $pagina) - $qtd_item;
                         
-                        $sql = "SELECT * FROM tb_cadastro ORDER BY data_C DESC LIMIT $inicio, $qtd_item";
+                        $sql = "SELECT * FROM tb_noticias ORDER BY data_p DESC LIMIT $inicio, $qtd_item";
                         
                         $result = mysqli_query($conn, $sql);
 
@@ -92,47 +86,27 @@ require_once 'config.php';
 
                             echo "<div class='breve-vaga'>";
 
-                                if($exibe['tipo_V'] == 'Emprego'){
                                 echo "
                                 <div class='img-vaga'>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
+
+                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
 
                                 </div>";
-                                }elseif($exibe['tipo_V'] == 'Estagio'){
-                                    echo "
-                                    <div class='img-vaga'>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-estagio01.jpg'></a>
-                                    </div>";
-                                }elseif($exibe['tipo_V'] == 'Nivel_superior'){
-                                    echo "
-                                    <div class='img-vaga'>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/superior.jpg'></a>
-                                    </div>";
-                                }
-                                elseif($exibe['tipo_V'] == 'Diaria'){
-                                    echo "
-                                    <div class='img-vaga'>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
-                                    </div>";
-                                }
-
-
+                                
+                                
                                 echo "
                                 <div class='desc-vaga'>
-
-                                    <h3 class='titulo_vaga'>".ucfirst($exibe['nome_V'])."</h3>
-                                    <p><b>Localidade:</b> ".ucwords($exibe['local_T'])."</p>
-                                    <p><b>Beneficios:</b>".ucwords($exibe['salario_B'])."</p>
-                                    <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_C']))."</p>
-                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['descricao'])." ...</p>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais</a>
+                                    <h3 class='titulo_vaga'>".ucwords($exibe['titulo'])."</h3>
+                                    <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
+                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
+                                    <a href='#'>Ver mais</a>
                                 </div>
                                 <div class='clear'></div>
                             </div><!--FIM DA DIV BREVE-VAGA -->";
                         }
                         echo "<div class='paginacao'>";
                         //Contando quantos resultados tem na tabela
-                        $result_pg = "SELECT COUNT(id) AS num_result FROM tb_cadastro";
+                        $result_pg = "SELECT COUNT(id) AS num_result FROM tb_noticias";
                         //Executando a query
                         $query = mysqli_query($conn, $result_pg);
                         //Transformando em array
@@ -141,18 +115,18 @@ require_once 'config.php';
                         //Arredonadando a quantidade de paginas
                         $qtd_pg = ceil($result['num_result'] / $qtd_item);
 
-                        echo "<a class='pri_pg' href='index.php?pagina=1'>Primeira</a>";
+                        echo "<a class='pri_pg' href='noticias.php?pagina=1'>Primeira</a>";
 
 
                         for($i = 1; $i <= $qtd_pg; $i++){
                 
                              if($i >= 1){
 
-                                echo "<a class='num_pg' href='index.php?pagina=$i'>$i</a>";
+                                echo "<a class='num_pg' href='noticias.php?pagina=$i'>$i</a>";
                     
                             }
                         }
-                        echo "<a class='ult_pg' href='index.php?pagina=$qtd_pg'>Último</a>";
+                        echo "<a class='ult_pg' href='noticias.php?pagina=$qtd_pg'>Último</a>";
                         echo "</div>";
                     ?>
 

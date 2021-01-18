@@ -1,17 +1,41 @@
 <?php 
+    require_once 'config.php';
     require_once 'conx.php';
+
+    if(isset($_SESSION["numLogin"])){
+
+        if(isset($_GET["num"])){
+   
+            $n1=$_GET["num"];
+            
+        }else if(isset($_POST["num"])){
+            
+            $n1=$_POST["num"];
+        }
+        
+        $n2=$_SESSION["numLogin"];
+        
+        if($n1!=$n2){
+            echo "<p>Login não efetuado</p>";
+            exit;
+        }
+    }else{
+        echo "<p>Esse Login não foi efetuado</p>";
+      
+        exit;
+    }
 
     if(isset($_POST['f_submit'])){
 
-        $nomeV = $_POST['f_nomeV'];
-        $empresa = empty($_POST['f_nomeE']) ? "Não Informado" : $_POST['f_nomeE'];
+        $nomeV = ucfirst(strtolower($_POST['f_nomeV']));
+        $empresa = empty($_POST['f_nomeE']) ? "Não Informado" : ucfirst(strtolower($_POST['f_nomeE']));
         $quantidade = $_POST['qtdV'];
-        $local = $_POST['f_local'];
+        $local = ucfirst(strtolower($_POST['f_local']));
         $carga = empty($_POST['f_carga']) ? "Não Informado" : $_POST['f_carga'] ;
         $salarioB = empty($_POST['f_salarioB']) ? "Não Informado": $_POST['f_salarioB'];
         $tipoV = $_POST['f_tipoV'];
-        $requisitos = empty($_POST['f_req']) ? "Não Informado" :  $_POST['f_req'];
-        $descricao = $_POST['f_desc'];
+        $requisitos = empty($_POST['f_req']) ? "Não Informado" :  ucfirst(strtolower($_POST['f_req']));
+        $descricao = ucfirst(strtolower($_POST['f_desc']));
         $periodo = $_POST['f_periodo'];
         $email = trim($_POST['f_email']);
 
@@ -111,7 +135,8 @@
                                 <label for='id_desc'>Descrição da Vaga*:</label>
                                     <textarea name='f_desc' id='id_desc' rows='6' cols='55' required='required'></textarea>
                                  
-                                <label for='id_periodo'>Periodo da vaga*</label><input type='text' value="05/08/2020" name='f_periodo' id='id_periodo' placeholder='Ex: 19/02/2020' required='required'>
+
+                                <label for='id_periodo'>Periodo da vaga*</label><input type='text' value="05/08/2020" name='f_periodo' id='id_periodo' placeholder='Ex: 19/02/2020' min="10" max="10" required='required'>
                                     
                                 <label for='id_email'>Email*</label><input type='email' name='f_email'  id='id_email' placeholder='Ex: goolbee@gmail.com' required='required'>    
                                 
