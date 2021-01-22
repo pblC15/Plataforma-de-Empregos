@@ -146,6 +146,8 @@ header.cabecalho-submenu nav.sub-menu ul li:hover {
 
 .estilo-item {
     background-color: #2f98d1;
+    border-left: 4px solid #0077b5;
+    border-right: 4px solid #0077b5;
 }
 
 .botaoLog {
