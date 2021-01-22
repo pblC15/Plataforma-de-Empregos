@@ -37,6 +37,7 @@ body {
 header.cabecalho-principal {
     /*background-color: rgba(235, 233, 233, 0.733);*/
     background-color: rgb(44, 43, 43);
+    padding: 0 2%;
 }
 
 header.cabecalho-principal .logo {
@@ -164,7 +165,7 @@ header.cabecalho-submenu nav.sub-menu ul li:hover {
 
 /*************MEDIA QUERYS***************/
 
-@media screen and (max-width: 838px) {
+@media screen and (max-width: 920px) {
     header.cabecalho-principal {
         height: 180px;
     }

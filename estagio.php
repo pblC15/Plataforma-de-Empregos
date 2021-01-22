@@ -1,5 +1,30 @@
 <?php 
-    require_once "conx.php";
+    require_once 'config.php';
+    require_once 'conx.php';
+
+    if(isset($_SESSION["numLogin"])){
+
+        if(isset($_GET["num"])){
+   
+            $n1=$_GET["num"];
+            
+        }else if(isset($_POST["num"])){
+            
+            $n1=$_POST["num"];
+        }
+        
+        $n2=$_SESSION["numLogin"];
+        
+        if($n1!=$n2){
+            echo "<p>Login não efetuado</p>";
+            exit;
+        }
+    }else{
+        echo "<p>Esse Login não foi efetuado</p>";
+      
+        exit;
+    }
+
 
 ?>
 <!DOCTYPE html>
