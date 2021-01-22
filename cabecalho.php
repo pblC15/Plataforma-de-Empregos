@@ -42,7 +42,7 @@
     <nav id='idmenu-mobile' class='menu-mobile'>
         <ul>
         <?php
-            if(!isset($_GET['numLogin'])){
+            if(isset($_GET['numLogin'])){
                 if(isset($_GET["num"])){
     
                     $n1=$_GET["num"];
@@ -97,44 +97,100 @@
     <nav class='sub-menu'>
         <ul>
             <?php
-
-                $arquivo = substr($_SERVER['SCRIPT_NAME'], 28);
+                 if(!isset($_SESSION['numLogin'])){
                 
-                if($arquivo === "vagas.php"){
-                    echo "<li class='estilo-item'><a href='vagas.php'>VAGAS</a></li>";
-                }else{
-                    echo "<li><a href='vagas.php'>VAGAS</a></li>";
-                }
+                 //se não esxistir
+                    $arquivo = substr($_SERVER['SCRIPT_NAME'], 28);
+                    
+                    if($arquivo === "vagas.php"){
+                        echo "<li class='estilo-item'><a href='vagas.php'>VAGAS</a></li>";
+                    }else{
+                        echo "<li><a href='vagas.php'>VAGAS</a></li>";
+                    }
 
-                if($arquivo === "estagio.php"){
-                    echo "<li class='estilo-item'><a href='estagio.php'>ESTAGIO</a></li>";
-                }else{
-                    echo "<li><a href='estagio.php'>ESTAGIO</a></li>";
-                }
+                    if($arquivo === "estagio.php"){
+                        echo "<li class='estilo-item'><a href='estagio.php'>ESTAGIO</a></li>";
+                    }else{
+                        echo "<li><a href='estagio.php'>ESTAGIO</a></li>";
+                    }
 
-                if($arquivo === "nivelsuperior.php"){
-                    echo "<li class='estilo-item'><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
-                }else{
-                    echo "<li><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
-                }
+                    if($arquivo === "nivelsuperior.php"){
+                        echo "<li class='estilo-item'><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
+                    }else{
+                        echo "<li><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
+                    }
 
-                if($arquivo === "noticias.php"){
-                    echo "<li class='estilo-item'><a href='noticias.php'>NOTÍCIAS</a></li>";
-                }else{
-                    echo "<li><a href='noticias.php'>NOTÍCIAS</a></li>";
+                    if($arquivo === "noticias.php"){
+                        echo "<li class='estilo-item'><a href='noticias.php'>NOTÍCIAS</a></li>";
+                    }else{
+                        echo "<li><a href='noticias.php'>NOTÍCIAS</a></li>";
 
-                }
+                    }
 
-                if($arquivo === "cursos.php"){
-                    echo "<li class='estilo-item'><a href='cursos.php'>CURSOS</a></li>";
+                    if($arquivo === "cursos.php"){
+                        echo "<li class='estilo-item'><a href='cursos.php'>CURSOS</a></li>";
+                    }else{
+                        echo "<li><a href='cursos.php'>CURSOS</a></li>";
+                    }
+                 /**/
                 }else{
-                    echo "<li><a href='cursos.php'>CURSOS</a></li>";
-                }
 
-                if($arquivo === "anunciar.php"){
-                    echo "<li class='estilo-item'><a href='anunciar.php'>ANUNCIAR</a></li>";
-                }else{
-                    echo "<li><a href='anunciar.php'>ANUNCIAR</a></li>";
+                //se existir
+                    if(isset($_GET["num"])){
+        
+                        $n1=$_GET["num"];
+                        
+                    }else if(isset($_POST["num"])){
+                        
+                        $n1=$_POST["num"];
+                    }
+                    $n2=$_SESSION["numLogin"];
+                
+                    if($n1!=$n2){
+                        echo "<p>Login não efetuado</p>";
+                        exit;
+                    }
+                    
+                    $arquivo = substr($_SERVER['SCRIPT_NAME'], 28);
+                    
+                    if($arquivo === "vagas.php"){
+                        echo "<li class='estilo-item'><a href='vagas.php'>VAGAS</a></li>";
+                    }else{
+                        echo "<li><a href='vagas.php?num=".$_SESSION['numLogin']."'>VAGAS</a></li>";
+                    }
+
+                    if($arquivo === "estagio.php"){
+                        echo "<li class='estilo-item'><a href='estagio.php'>ESTAGIO</a></li>";
+                    }else{
+                        echo "<li><a href='estagio.php?num=".$_SESSION['numLogin']."'>ESTAGIO</a></li>";
+                    }
+
+                    if($arquivo === "nivelsuperior.php"){
+                        echo "<li class='estilo-item'><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
+                    }else{
+                        echo "<li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."'>NIVEL SUPERIOR</a></li>";
+                    }
+
+                    if($arquivo === "noticias.php"){
+                        echo "<li class='estilo-item'><a href='noticias.php'>NOTÍCIAS</a></li>";
+                    }else{
+                        echo "<li><a href='noticias.php?num=".$_SESSION['numLogin']."'>NOTÍCIAS</a></li>";
+
+                    }
+
+                    if($arquivo === "cursos.php"){
+                        echo "<li class='estilo-item'><a href='cursos.php'>CURSOS</a></li>";
+                    }else{
+                        echo "<li><a href='cursos.php'>CURSOS</a></li>";
+                    }
+
+                    if($arquivo === "anunciar.php"){
+                        echo "<li class='estilo-item'><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>";
+                    }else{
+                        echo "<li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>";
+                    }
+                /**********************************/
+
                 }
        
             ?>
