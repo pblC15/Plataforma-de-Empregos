@@ -19,12 +19,7 @@
             echo "<p>Login não efetuado</p>";
             exit;
         }
-    }else{
-        echo "<p>Esse Login não foi efetuado</p>";
-      
-        exit;
     }
-
 
 ?>
 <!DOCTYPE html>
