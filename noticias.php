@@ -146,7 +146,15 @@
                 
                              if($i >= 1){
 
-                                echo "<a class='num_pg' href='noticias.php?pagina=$i'>$i</a>";
+                                if(!isset($_SESSION['numLogin'])){
+                                    
+                                    echo "<a class='num_pg' href='noticias.php?pagina=$i'>$i</a>";
+                                    
+                                }else{
+                
+                                    echo "<a class='num_pg' href='noticias.php?num=".$_SESSION['numLogin']."&pagina=$i'>$i</a>";
+                
+                                }
                     
                             }
                         }

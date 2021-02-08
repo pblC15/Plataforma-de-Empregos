@@ -152,9 +152,9 @@ header.cabecalho-submenu nav.sub-menu ul li:hover {
 
 .botaoLog {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 8px 20px !important;
-    border: 2px solid #2f98d1;
+    border: 1px solid #2f98d1;
 }
 
 .botaoLog a {

@@ -124,9 +124,19 @@ require_once 'config.php';
                                     <p><b>Localidade:</b> ".ucwords($exibe['local_T'])."</p>
                                     <p><b>Beneficios:</b>".ucwords($exibe['salario_B'])."</p>
                                     <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_C']))."</p>
-                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['descricao'])." ...</p>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais</a>
-                                </div>
+                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['descricao'])." ...</p>";
+
+                                    if(!isset($_SESSION['numLogin'])){
+
+                                        echo "<a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais</a>";
+
+                                    }else{
+
+                                        echo "<a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>Ver mais</a>";
+
+                                    }
+
+                                echo "</div>
                                 <div class='clear'></div>
                             </div><!--FIM DA DIV BREVE-VAGA -->";
                         }
@@ -148,7 +158,15 @@ require_once 'config.php';
                 
                              if($i >= 1){
 
-                                echo "<a class='num_pg' href='index.php?pagina=$i'>$i</a>";
+                                if(!isset($_SESSION['numLogin'])){
+                                    
+                                    echo "<a class='num_pg' href='index.php?pagina=$i'>$i</a>";
+                                    
+                                }else{
+                
+                                    echo "<a class='num_pg' href='index.php?num=".$_SESSION['numLogin']."&pagina=$i'>$i</a>";
+                
+                                }
                     
                             }
                         }

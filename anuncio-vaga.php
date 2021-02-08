@@ -1,29 +1,25 @@
 <?php 
-    //  require_once 'config.php';
+    require_once 'config.php';
     require_once 'conx.php';
  
-    //  if(isset($_SESSION["numLogin"])){
+     if(isset($_SESSION["numLogin"])){
  
-    //      if(isset($_GET["num"])){
+         if(isset($_GET["num"])){
     
-    //          $n1=$_GET["num"];
+             $n1=$_GET["num"];
              
-    //      }else if(isset($_POST["num"])){
+         }else if(isset($_POST["num"])){
              
-    //          $n1=$_POST["num"];
-    //      }
+             $n1=$_POST["num"];
+         }
          
-    //      $n2=$_SESSION["numLogin"];
+         $n2=$_SESSION["numLogin"];
          
-    //      if($n1!=$n2){
-    //          echo "<p>Login não efetuado</p>";
-    //          exit;
-    //      }
-    //  }else{
-    //      echo "<p>Esse Login não foi efetuado</p>";
-       
-    //      exit;
-    //  }
+         if($n1!=$n2){
+             echo "<p>Login não efetuado</p>";
+             exit;
+         }
+     }
 
 ?>
 <!DOCTYPE html>
@@ -76,11 +72,21 @@
 
                             echo "<div class='descricao-vaga'>
                                 
-                                    <div class='titulo-vaga'>
-                                        <a href='index.php'>HOME</a>><a href='vagas.php'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a></p>
-                                        <h3>Vagas para ".strtoupper($exibe['nome_V'])."</h3>
+                                    <div class='titulo-vaga'>";
 
-                                        <div class='data-icone'>
+                                        if(!isset($_SESSION['numLogin'])){
+
+                                            echo "<a href='index.php?num=".$_SESSION['numLogin']."'>HOME</a>><a href='vagas.php?num=".$_SESSION['numLogin']."'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a></p>
+                                            <h3>Vagas para ".strtoupper($exibe['nome_V'])."</h3>";
+                                            
+                                        }else{
+
+                                            "<a href='index.php'>HOME</a>><a href='vagas.php'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a></p>
+                                            <h3>Vagas para ".strtoupper($exibe['nome_V'])."</h3>";
+                                        }
+                                        
+
+                                        echo "<div class='data-icone'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='13' height='13'><path fill-rule='evenodd' d='M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z'></path></svg>
                                             <p>Data da publicação: ".date('d/m/Y', strtotime($exibe['data_C']))."</p>
                                         </div>

@@ -120,7 +120,15 @@
                 
                              if($i >= 1){
 
-                                echo "<a class='num_pg' href='nivelsuperior.php?pagina=$i'>$i</a>";
+                                if(!isset($_SESSION['numLogin'])){
+                                    
+                                    echo "<a class='num_pg' href='nivelsuperior.php?pagina=$i'>$i</a>";
+                                    
+                                }else{
+                
+                                    echo "<a class='num_pg' href='nivelsuperior.php?num=".$_SESSION['numLogin']."&pagina=$i'>$i</a>";
+                
+                                }
                     
                             }
                         }
