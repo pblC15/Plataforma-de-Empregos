@@ -1,3 +1,27 @@
+
+<?php 
+    require_once 'config.php';
+    require_once 'conx.php';
+
+    if(isset($_SESSION["numLogin"])){
+
+        if(isset($_GET["num"])){
+   
+            $n1=$_GET["num"];
+            
+        }else if(isset($_POST["num"])){
+            
+            $n1=$_POST["num"];
+        }
+        
+        $n2=$_SESSION["numLogin"];
+        
+        if($n1!=$n2){
+            echo "<p>Login não efetuado</p>";
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang='pt-br'>
     <head>
@@ -42,7 +66,7 @@
                     
                     <?php 
                         require_once '_function/functionTexto.php';
-                        require_once "conx.php";
+            
 
                         $nome_pesq = $_GET['f_name'];
 
@@ -204,7 +228,7 @@
 
         <footer>
             
-          <?php require_once "rodape.html";?>
+          <?php require_once "rodape.php"?>
            
         </footer>
     </body>

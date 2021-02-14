@@ -49,7 +49,7 @@
 
         if($ret >= 1){
             
-            Header('Location: anuncioSucesso.php');
+            Header('Location: anuncioSucesso.php?num='.$_SESSION['numLogin']);
 
         }else {
             echo "<p class='mensagemEmail'>Erro ao salvar os dados!</p>";
@@ -106,8 +106,8 @@
                         </div><!--FIM DA DIV TEXT-ALERT -->  
                         
                         <div class='formulario'>
-                            <form action='anunciar.php' method='post'>
-
+                            <form action='anunciar.php?num=<?php echo $_SESSION['numLogin'] ?>' method='post'>
+                                
                                 <label for='id_nomeV'>Nome Vaga*</label><input type='text' name='f_nomeV' id='id_nomV' placeholder='Ex: Auxiliar de Cozinha, Repositor' required='required'>
 
                                 <label for='id_nomeE'>Empresa</label><input type='text' name='f_nomeE' id='id_nomE' placeholder='Ex: Goolbee Empregos'>
@@ -219,7 +219,7 @@
 
         <footer>
 
-          <?php require_once "rodape.html";?>
+          <?php require_once "rodape.php";?>
         
         </footer>
 

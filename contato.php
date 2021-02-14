@@ -163,7 +163,7 @@
         <!--FOOTER RODAPE -->    
         <footer>
            
-            <?php require_once "rodape.html";?>
+            <?php require_once "rodape.php";?>
             
         </footer>
     </body>

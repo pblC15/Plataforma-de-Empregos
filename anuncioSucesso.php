@@ -1,3 +1,9 @@
+<?php 
+
+require_once 'config.php';
+
+?>
+
 <!DOCTYPE html> 
 <html lang='pt-br'>
     <head>
@@ -52,7 +58,7 @@
                     <div class='mensagem-sucesso'>
  
                     <p>Obrigado por anunciar sua vaga de emprego na <b>GoolbeeEmpregos</b>, estamos aqui para ajudar a população a entrarem no mercado de trabalho e gerar economia para o Brasil.</p>
-                    <p>Seu anuncio foi postado com sucesso para ver a postagem acesse esse <a href='index.php'>Click aqui</a> que redirecionará para a página da postagem.</p>
+                    <p>Seu anuncio foi postado com sucesso para ver a postagem acesse esse <a href='index.php?num=<?php echo $_SESSION['numLogin'];?>'>Click aqui</a> que redirecionará para a página da postagem.</p>
                       
                     </div>
                     
@@ -102,7 +108,7 @@
 
         <footer>
              
-           <?php require_once "rodape.html";?>
+           <?php require_once "rodape.php";?>
           
         </footer>
     </body>
