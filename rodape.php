@@ -45,8 +45,8 @@
                           <li><a href='estagio.php?num=".$_SESSION['numLogin']."'>ESTÁGIO</a></li>
                           <li><a href='noticias.php?num=".$_SESSION['numLogin']."'>NOTÍCIAS</a></li>
                           <li><a href='#'>CURSOS</a></li>
-                          <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>
-                          <li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."'>NIVEL SUPERIOR</a></li>";
+                          <li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."'>NIVEL SUPERIOR</a></li>
+                          <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>";
                 }
             ?>
 
@@ -58,7 +58,25 @@
 
 
     <div class='footer-lateral'>
-        <a href='index?pagina=1'><img src='_imgs/logo-02.png'></a>
+        
+        <?php
+        if(!isset($_SESSION['numLogin'])){
+
+            echo "<a href='index?pagina=1'><img src='_imgs/logo-02.png' alt='Goolbee Empregos' title='Logo Goolbee Empregos'></a>";
+
+        }else{
+            
+            echo "<a href='index?num=".$_SESSION['numLogin']."&pagina=1'><img src='_imgs/logo-02.png' alt='Goolbee Empregos' title='Logo Goolbee Empregos'/></a>";
+        }
+        
+        ?>
+        <div class="footer-social">
+            <div><span class="icon-facebook"></span></div>
+            <div><span class="icon-instagram"></span></div>
+            <div><span class="icon-mail2"></span></div>
+            <div><span class="icon-twitter"></span></div>
+            <div><span class="icon-youtube"></span></div>
+        </div>
     </div>
     <div class='clear'></div>
 

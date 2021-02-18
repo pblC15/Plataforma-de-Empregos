@@ -33,6 +33,7 @@ footer .container {
 .menu-footer {
     display: inline-block;
     width: 100%;
+    margin-top: 20px;
 }
 
 .menu-footer ul {
@@ -41,8 +42,9 @@ footer .container {
 
 .menu-footer ul li {
     float: left;
-    width: calc(100% / 4);
+    width: calc(100% / 4 - 20px);
     padding: 10px 2%;
+    text-align: center;
 }
 
 .menu-footer ul li a {
@@ -91,7 +93,6 @@ footer .container {
 }
 
 .footer-lateral {
-    margin-bottom: 30px;
     width: 500px;
     padding: 0 2%;
     text-align: right;
@@ -111,6 +112,34 @@ footer .container {
     font-style: Bold;
     font-size: 16px;
     font-weight: 600;
+}
+
+.footer-lateral a img {
+    width: 300px !important;
+    height: 120px !important;
+    margin-bottom: 0px !important;
+}
+
+.footer-social {
+    width: 60%;
+    float: right;
+    text-align: center;
+}
+
+.footer-social>div {
+    float: left;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.footer-social>div>span {
+    color: #ccc;
+    font-size: 1.3em;
+    padding: 15px;
+}
+
+[class^="icon-"]:before {
+    margin-right: 0px !important;
 }
 
 @media screen and (max-width: 960px) {
@@ -157,6 +186,16 @@ footer .container {
         width: 100%;
         display: inline-block;
     }
+    .footer-lateral {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+    .footer-social {
+        display: inline-block;
+        width: 100%;
+    }
     .ultimo-footer {
         display: flex;
         flex-direction: column;
@@ -164,3 +203,5 @@ footer .container {
         padding: 0 2%;
     }
 }
+
+@media screen and (max-width: 800px) {}
