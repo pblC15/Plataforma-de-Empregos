@@ -44,25 +44,30 @@ section.conteudo .breve-vaga {
     float: left;
 }
 
-.breve-vaga .desc-vaga h3 {
+.breve-vaga .desc-vaga h3 a {
     width: 100%;
     color: #4096c5;
-    text-decoration: underline;
+    text-decoration: none;
     text-shadow: 1px 1px 1px #ccc;
     text-align: left;
     font-weight: 600;
 }
 
-.breve-vaga .desc-vaga p {
-    margin-top: 15px;
+.breve-vaga .desc-vaga h3 a:hover {
+    text-decoration: underline;
 }
 
-.breve-vaga .desc-vaga a {
+.breve-vaga .desc-vaga p {
+    margin-top: 8px;
+}
+
+.breve-vaga .desc-vaga p a {
     float: right;
-    margin-top: 10px;
+    margin-top: 40px;
     padding: 5px;
+    font-size: 0.8em;
     background-color: #0077b5;
-    border-radius: 10px;
+    border-radius: 5px;
     text-decoration: none;
     color: white;
 }
@@ -126,10 +131,17 @@ section.conteudo .breve-vaga {
 
 .anuncio-principal .titulo-vaga a {
     font-size: 14px;
-    margin: 0 10px;
     text-decoration: none;
     color: rgb(150, 150, 150);
     font-weight: 600;
+}
+
+.anuncio-principal .titulo-vaga a:first-child {
+    margin-right: 10px;
+}
+
+.anuncio-principal .titulo-vaga a:not(:first-child) {
+    margin: 0 10px;
 }
 
 .anuncio-principal .titulo-vaga a:hover {
@@ -174,6 +186,7 @@ section.conteudo .breve-vaga {
 
 .detalhe-vaga {
     border-top: 3px solid #2f98d1;
+    margin: 5px;
 }
 
 .detalhe-vaga p {
@@ -183,10 +196,16 @@ section.conteudo .breve-vaga {
     color: rgb(120, 120, 120);
 }
 
+.detalhe-vaga .requisitos .dados,
+.detalhe-vaga .desc .dados {
+    text-align: justify;
+}
+
 span.dados {
     color: black;
     font-size: 18px;
     font-weight: 500;
+    text-align: justify;
 }
 
 .candidatar {

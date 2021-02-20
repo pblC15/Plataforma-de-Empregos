@@ -27,7 +27,7 @@
 
     if(isset($_POST['f_submit'])){
 
-        $nomeV = ucfirst(strtolower($_POST['f_nomeV']));
+        $nomeV = ucwords(strtolower($_POST['f_nomeV']));
         $empresa = empty($_POST['f_nomeE']) ? "Não Informado" : ucfirst(strtolower($_POST['f_nomeE']));
         $quantidade = $_POST['qtdV'];
         $local = ucfirst(strtolower($_POST['f_local']));

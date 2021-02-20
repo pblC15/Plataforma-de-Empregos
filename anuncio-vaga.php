@@ -76,13 +76,14 @@
 
                                         if(!isset($_SESSION['numLogin'])){
 
-                                            echo "<a href='index.php?num=".$_SESSION['numLogin']."'>HOME</a>><a href='vagas.php?num=".$_SESSION['numLogin']."'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a></p>
-                                            <h3>Vagas para ".strtoupper($exibe['nome_V'])."</h3>";
+                                            echo "<a href='index.php?pagina=1'>HOME</a>><a href='vagas.php?pagina=1'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
+                                            <h3>Vagas para ".ucwords($exibe['nome_V'])."</h3>";
                                             
                                         }else{
 
-                                            "<a href='index.php'>HOME</a>><a href='vagas.php'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a></p>
-                                            <h3>Vagas para ".strtoupper($exibe['nome_V'])."</h3>";
+                                            
+                                            echo "<a href='index.php?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a>><a href='vagas.php?num=".$_SESSION['numLogin']."&pagina=1'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
+                                            <h3>Vagas para ".ucwords($exibe['nome_V'])."</h3>";
                                         }
                                         
 
@@ -93,7 +94,7 @@
                                         
                                         <div class='tipo-icone'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='13' height='13'><path fill-rule='evenodd' d='M6.75 0A1.75 1.75 0 005 1.75V3H1.75A1.75 1.75 0 000 4.75v8.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3H11V1.75A1.75 1.75 0 009.25 0h-2.5zM9.5 3V1.75a.25.25 0 00-.25-.25h-2.5a.25.25 0 00-.25.25V3h3zM5 4.5H1.75a.25.25 0 00-.25.25V6a2 2 0 002 2h9a2 2 0 002-2V4.75a.25.25 0 00-.25-.25H5zm-1.5 5a3.484 3.484 0 01-2-.627v4.377c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V8.873a3.484 3.484 0 01-2 .627h-9z'></path></svg>
-                                            <p>Tipo de vaga: ".$exibe['tipo_V']."</p>
+                                            <p>Tipo de vaga: ".ucwords(str_replace("_"," ",$exibe['tipo_V']))."</p>
                                         </div>
                                         <div class='clear'></div>
                                     </div>
@@ -105,8 +106,8 @@
                                         <p><b>Carga Horária: </b> <span class='dados'>".$exibe['carga_H']."</span></p>
                                         <p><b>Sálario e Beneficios:</b><span class='dados'>".$exibe['salario_B']."</span></p>
                                         <p><b>Tipo de Vaga: </b><span class='dados'>".str_replace("_"," ",$exibe['tipo_V'])."</span></p>
-                                        <p><b>Requisitos: </b><span class='dados'> ".$exibe['requisitos']."<span></p>
-                                        <p><b>Descrição:</b> <span class='dados'>".$exibe['descricao']."</span></p>
+                                        <p class='requisitos'><b>Requisitos: </b><span class='dados'> ".$exibe['requisitos']."<span></p>
+                                        <p class='desc'><b>Descrição:</b> <span class='dados'>".$exibe['descricao']."</span></p>
                                         
                                         <div class='candidatar'>
                                             <h3>Para se candidatar: </h3>
@@ -202,4 +203,12 @@
          
         </footer>
     </body>
+
+    <script>
+        $(function(){
+            var atributo = $(".tipo-vaga").attr("href");
+            console.log(atributo);
+
+        });
+    </script>
 </html>

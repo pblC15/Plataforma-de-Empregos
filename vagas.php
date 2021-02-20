@@ -87,22 +87,110 @@
 
                         while($exibe = mysqli_fetch_array($result)){
 
-                            echo "<div class='breve-vaga'>
+                            echo "<div class='breve-vaga'>";
 
-                              
-                                <div class='img-vaga'>
-                                <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
-                                </div>
-    
-                                <div class='desc-vaga'>
-                                    <h3>".$exibe['nome_V']."</h3>
-                                    <p><b>Localidade:</b> ".$exibe['nome_E']."</p>
-                                    <p><b>Beneficios:</b>".$exibe['salario_B']."</p>
-                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['descricao'])."...</p>
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais...</a>
-                                </div>
-                                <div class='clear'></div>
-                            </div><!--FIM DA DIV BREVE-VAGA -->";
+                                if($exibe['tipo_V'] == 'Emprego'){
+
+                                    if(!isset($_SESSION['numLogin'])){
+                                        
+                                       
+                                        echo "<div class='img-vaga'>
+                                                <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
+                                              </div>";
+
+                                    }else{
+
+                                        echo "<div class='img-vaga'>
+                                                <a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
+                                              </div>";
+
+                                    }
+                                
+                                }elseif($exibe['tipo_V'] == 'Estagio'){
+
+                                    if(!isset($_SESSION['numLogin'])){
+
+                                        echo "
+                                            <div class='img-vaga'>
+                                                <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-estagio01.jpg'></a>
+                                            </div>";
+
+                                    }else{
+
+                                        echo "
+                                            <div class='img-vaga'>
+                                                <a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-estagio01.jpg'></a>
+                                            </div>";
+                                    }
+                                    
+                                }elseif($exibe['tipo_V'] == 'Nivel_superior'){
+
+                                    if(!isset($_SESSION['numLogin'])){
+                                    
+                                        echo "
+                                        <div class='img-vaga'>
+                                            <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/superior.jpg'></a>
+                                        </div>";
+
+                                    }else{
+
+                                        echo "
+                                        <div class='img-vaga'>
+                                            <a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src='_imgs/rascunho/superior.jpg'></a>
+                                        </div>";
+
+                                    }
+                                   
+                                }
+                                elseif($exibe['tipo_V'] == 'Diaria'){
+
+                                    if(!isset($_SESSION['numLogin'])){
+
+                                        echo "
+                                            <div class='img-vaga'>
+                                                <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
+                                            </div>";
+
+                                    }else{
+
+                                        echo "
+                                            <div class='img-vaga'>
+                                                <a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
+                                            </div>";
+
+                                    }
+                                    
+                                }
+
+
+                               if(!isset($_SESSION['numLogin'])){
+
+                                echo "
+                                    <div class='desc-vaga'>
+
+                                        <h3 class='titulo_vaga'><a href='anuncio-vaga.php?id=".$exibe['id']."'>".ucfirst($exibe['nome_V'])."</a></h3>
+                                        <p><b>Localidade:</b> ".ucwords($exibe['local_T'])."</p>
+                                        <p><b>Beneficios:</b>".ucwords($exibe['salario_B'])."</p>
+                                        <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_C']))."</p>
+                                        <p><a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais</a></p>
+
+                                    </div>";
+
+                               }else{
+
+                                echo "
+                                    <div class='desc-vaga'>
+
+                                        <h3 class='titulo_vaga'><a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>".ucfirst($exibe['nome_V'])."</a></h3>
+                                        <p><b>Localidade:</b> ".ucwords($exibe['local_T'])."</p>
+                                        <p><b>Beneficios:</b>".ucwords($exibe['salario_B'])."</p>
+                                        <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_C']))."</p>
+                                        <p><a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>Ver mais</a></p>
+
+                                    </div>";
+                               }
+                                echo "<div class='clear'></div>
+                            </div>";//FIM DA DIV BREVE-VAGA
                         }
                         echo "<div class='paginacao'>";
                         //Contando quantos resultados tem na tabela

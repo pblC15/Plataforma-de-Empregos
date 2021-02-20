@@ -70,13 +70,6 @@
         }
         
         ?>
-        <div class="footer-social">
-            <div><span class="icon-facebook"></span></div>
-            <div><span class="icon-instagram"></span></div>
-            <div><span class="icon-mail2"></span></div>
-            <div><span class="icon-twitter"></span></div>
-            <div><span class="icon-youtube"></span></div>
-        </div>
     </div>
     <div class='clear'></div>
 
