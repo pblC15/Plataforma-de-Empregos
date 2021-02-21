@@ -1,6 +1,6 @@
 <?php 
-    require_once 'config.php';
-    require_once 'conx.php';
+    require_once 'config/config.php';
+    require_once 'config/conx.php';
 
     if(isset($_SESSION["numLogin"])){
 

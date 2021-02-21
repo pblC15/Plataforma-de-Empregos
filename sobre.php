@@ -1,5 +1,5 @@
 <?php 
-     require_once 'config.php';
+     require_once 'config/config.php';
     // require_once 'conx.php';
 
     // if(isset($_SESSION["numLogin"])){
@@ -136,7 +136,7 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once "conx.php";
+                                require_once "config/conx.php";
                                 //Obter dados do formulario
                                 if(isset($_POST['f_submit_email'])){
 

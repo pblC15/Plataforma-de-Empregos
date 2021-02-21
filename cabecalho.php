@@ -57,16 +57,6 @@
                     echo "<p>Login não efetuado</p>";
                     exit;
                 }
-                echo "  <li><a href='index?pagina=1'>HOME</a></li>
-                        <li><a href='sobre.php'>SOBRE</a></li>
-                        <li><a href='contato.php'>CONTATO</a></li>
-                        <li><a href='vagas.php?pagina=1'>VAGAS</a></li>
-                        <li><a href='estagio.php?pagina=1'>ESTAGIO</a></li>
-                        <li><a href='nivelsuperior.php?pagina=1'>NIVEL SUPERIOR</a></li>
-                        <li><a href='noticias.php'>NOTICIAS</a></li>
-                        <li><a href='cursos.php'>CURSOS</a></li>";
-                     
-            }else{
 
                 echo "<li><a href='index?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a></li>
                       <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>
@@ -75,8 +65,19 @@
                       <li><a href='vagas.php?num=".$_SESSION['numLogin']."&pagina=1'>VAGAS</a></li>
                       <li><a href='estagio.php?num=".$_SESSION['numLogin']."&pagina=1'>ESTAGIO</a></li>
                       <li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."&pagina=1'>NIVEL SUPERIOR</a></li>
-                      <li><a href='noticias.php?num=".$_SESSION['numLogin']."&pagina=1'>NOTICIAS</a></li>
-                      <li><a href='cursos.php'>CURSOS</a></li>";
+                      <li><a href='noticias.php?num=".$_SESSION['numLogin']."&pagina=1'>NOTICIAS</a></li>";
+
+                
+                     
+            }else{
+
+                echo "  <li><a href='index?pagina=1'>HOME</a></li>
+                        <li><a href='sobre.php'>SOBRE</a></li>
+                        <li><a href='contato.php'>CONTATO</a></li>
+                        <li><a href='vagas.php?pagina=1'>VAGAS</a></li>
+                        <li><a href='estagio.php?pagina=1'>ESTAGIO</a></li>
+                        <li><a href='nivelsuperior.php?pagina=1'>NIVEL SUPERIOR</a></li>
+                        <li><a href='noticias.php'>NOTICIAS</a></li>";
             }
             
             ?>

@@ -1,7 +1,7 @@
 
 <?php 
-    require_once 'config.php';
-    require_once 'conx.php';
+    require_once 'config/config.php';
+    require_once 'config/conx.php';
 
     if(isset($_SESSION["numLogin"])){
 
@@ -91,7 +91,7 @@
                     <h2>Vagas Recentes</h2>
                     
                     <?php 
-                        require_once "conx.php";
+                        require_once "config/conx.php";
                         require_once "_function/functionTexto.php";
                         //Obtendo a pagina vinda da URL
                         $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
@@ -115,15 +115,12 @@
 
                                     <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
 
-                                </div>";
-                                
-                                
-                                echo "
+                                </div>
                                 <div class='desc-vaga'>
-                                    <h3 class='titulo_vaga'>".ucwords($exibe['titulo'])."</h3>
+                                    <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
                                     <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
                                     <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
-                                    <a href='#'>Ver mais</a>
+                                    <p><a href='#'>Ver mais</a></p>
                                 </div>
                                 <div class='clear'></div>
                             </div><!--FIM DA DIV BREVE-VAGA -->";
@@ -227,7 +224,7 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once "conx.php";
+                                require_once "config/conx.php";
                                 //Obter dados do formulario
                                 if(isset($_POST['f_submit_email'])){
 
