@@ -6,70 +6,89 @@
                 <img class='img_cima' src='_imgs/icone/seta-pra-cima-3.png' alt='Ir para o Topo'>
             </a>
         </div>
-        <nav class='menu-footer'>
-            <ul>
-                <?php 
 
-                if(!isset($_SESSION['numLogin'])){
+        <div class="menu-content">
 
-                    echo "<li><a href='index.php?pagina=1'>HOME</a></li>
-                          <li><a href='sobre.php'>SOBRE</a></li>
-                          <li><a href='contato.php'>CONTATO</a></li>";
-                    
-                }else{
+            <nav class='menu-footer'>
+                <h1>Menu:</h1>
+                <div class="divisoria"></div>
+                <ul>
+                    <?php 
 
-                    echo "<li><a href='index.php?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a></li>
-                          <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>
-                          <li><a href='sobre.php?num=".$_SESSION['numLogin']."'>SOBRE</a></li>
-                          <li><a href='contato.php?num=".$_SESSION['numLogin']."'>CONTATO</a></li>";
-                }
+                    if(!isset($_SESSION['numLogin'])){
 
-                ?>
-            </ul>
-        </nav>
+                        echo "<li><a href='index.php?pagina=1'>HOME</a></li>
+                            <li><a href='sobre.php'>SOBRE</a></li>
+                            <li><a href='contato.php'>CONTATO</a></li>";
+                        
+                    }else{
+
+                        echo "<li><a href='index.php?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a></li>
+                            <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>
+                            <li><a href='sobre.php?num=".$_SESSION['numLogin']."'>SOBRE</a></li>
+                            <li><a href='contato.php?num=".$_SESSION['numLogin']."'>CONTATO</a></li>";
+                    }
+
+                    ?>
+                </ul>
+            </nav>
 
 
-        <nav class='submenu-footer'>
-            <ul>
-                <?php
-                if(!isset($_SESSION['numLogin'])){
-                    
-                    echo "<li><a href='vagas.php'>VAGAS</a></li>
-                          <li><a href='estagio.php'>ESTÁGIO</a></li>
-                          <li><a href='noticias.php'>NOTÍCIAS</a></li>
-                          <li><a href='#'>CURSOS</a></li>
-                          <li><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
-                }else{
+            <nav class='submenu-footer'>
+                <h1>Categorias:</h1>
+                <div class="divisoria"></div>
+                <ul>
+                    <?php
+                    if(!isset($_SESSION['numLogin'])){
+                        
+                        echo "<li><a href='vagas.php'>VAGAS</a></li>
+                            <li><a href='estagio.php'>ESTÁGIO</a></li>
+                            <li><a href='noticias.php'>NOTÍCIAS</a></li>
+                            <li><a href='#'>CURSOS</a></li>
+                            <li><a href='nivelsuperior.php'>NIVEL SUPERIOR</a></li>";
+                    }else{
 
-                    echo "<li><a href='vagas.php?num=".$_SESSION['numLogin']."'>VAGAS</a></li>
-                          <li><a href='estagio.php?num=".$_SESSION['numLogin']."'>ESTÁGIO</a></li>
-                          <li><a href='noticias.php?num=".$_SESSION['numLogin']."'>NOTÍCIAS</a></li>
-                          <li><a href='#'>CURSOS</a></li>
-                          <li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."'>NIVEL SUPERIOR</a></li>
-                          <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>";
-                }
-            ?>
+                        echo "<li><a href='vagas.php?num=".$_SESSION['numLogin']."'>VAGAS</a></li>
+                            <li><a href='estagio.php?num=".$_SESSION['numLogin']."'>ESTÁGIO</a></li>
+                            <li><a href='noticias.php?num=".$_SESSION['numLogin']."'>NOTÍCIAS</a></li>
+                            <li><a href='#'>CURSOS</a></li>
+                            <li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."'>NIVEL SUPERIOR</a></li>
+                            <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>";
+                    }
+                    ?>
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+        </div>
 
         <div class='clear'></div>
     </div>
 
 
     <div class='footer-lateral'>
-        
-        <?php
-        if(!isset($_SESSION['numLogin'])){
+        <div class="img-footer">
+            <?php
+            if(!isset($_SESSION['numLogin'])){
 
-            echo "<a href='index?pagina=1'><img src='_imgs/logo-02.png' alt='Goolbee Empregos' title='Logo Goolbee Empregos'></a>";
+                echo "<a href='index?pagina=1'><img src='_imgs/logo-02.png' alt='Goolbee Empregos' title='Logo Goolbee Empregos'></a>";
 
-        }else{
+            }else{
+                
+                echo "<a href='index?num=".$_SESSION['numLogin']."&pagina=1'><img src='_imgs/logo-02.png' alt='Goolbee Empregos' title='Logo Goolbee Empregos'/></a>";
+            }
             
-            echo "<a href='index?num=".$_SESSION['numLogin']."&pagina=1'><img src='_imgs/logo-02.png' alt='Goolbee Empregos' title='Logo Goolbee Empregos'/></a>";
-        }
-        
-        ?>
+            ?>
+        </div>
+        <div class="footer-netsocial">
+            <div class="redes-sociais">
+                <span class="icon-facebook"></span>
+                <span class="icon-twitter"></span>
+                <span class="icon-instagram"></span>
+                <span class="icon-whatsapp"></span>
+                <span class="icon-mail2"></span>
+            </div>
+            <p>Acesse nossas redes socias</p>
+        </div>
     </div>
     <div class='clear'></div>
 
