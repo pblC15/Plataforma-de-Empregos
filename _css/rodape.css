@@ -111,7 +111,6 @@ footer .container {
 .ultimo-footer p {
     margin: 3px auto;
     color: #FFF;
-    font-style: Bold;
     font-size: 16px;
     font-weight: 600;
 }
@@ -168,9 +167,17 @@ footer .container {
         width: 100%;
         float: none;
     }
+    footer .footer-side1 .menu-content {
+        padding: 0 2%;
+    }
     .menu-footer {
         width: 50%;
         float: left;
+        text-align: center;
+    }
+    .divisoria {
+        width: 80px;
+        margin: 10px auto;
     }
     .menu-footer ul li {
         float: none;
@@ -202,7 +209,6 @@ footer .container {
     .footer-lateral {
         display: flex;
         flex-direction: column;
-        width: 50%;
         margin: 0 auto;
     }
     .footer-social {
@@ -215,6 +221,14 @@ footer .container {
         text-align: center;
         padding: 0 2%;
     }
+    .ultimo-footer p:nth-of-type(1) {
+        margin-bottom: 5px;
+        border-bottom: 2px solid #FFF;
+    }
 }
 
-@media screen and (max-width: 800px) {}
+@media screen and (max-width: 480px) {
+    .footer-lateral .img-footer a img {
+        width: 100% !important;
+    }
+}

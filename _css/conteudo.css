@@ -49,7 +49,7 @@ section.conteudo .breve-vaga {
     color: #4096c5;
     text-decoration: none;
     text-shadow: 1px 1px 1px #ccc;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
 }
 
@@ -194,11 +194,12 @@ section.conteudo .breve-vaga {
     font-size: 19px;
     font-weight: 600;
     color: rgb(120, 120, 120);
+    text-align: left;
 }
 
 .detalhe-vaga .requisitos .dados,
 .detalhe-vaga .desc .dados {
-    text-align: justify;
+    text-align: justify !important;
 }
 
 span.dados {
@@ -443,7 +444,7 @@ td {
         margin-left: 0px;
     }
     .div_lateral {
-        margin: 10px 3%;
+        margin: 10px 2%;
         text-align: center;
     }
     aside.lateral {
