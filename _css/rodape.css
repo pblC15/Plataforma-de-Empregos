@@ -22,6 +22,7 @@ footer {
     display: flex;
     flex-direction: row;
     padding: 10px 10px 40px 10px;
+    font-style: italic;
 }
 
 footer .footer-side1 {
@@ -171,7 +172,7 @@ footer .container {
         padding: 0 2%;
     }
     .menu-footer {
-        width: 50%;
+        width: 55%;
         float: left;
         text-align: center;
     }
@@ -186,7 +187,7 @@ footer .container {
         text-align: center;
     }
     .submenu-footer {
-        width: 50%;
+        width: 55%;
         float: left;
         text-align: center;
     }

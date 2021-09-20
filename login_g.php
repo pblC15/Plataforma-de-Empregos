@@ -2,6 +2,8 @@
 
 require_once('config/conx.php');
 
+
+
 if( isset($_POST['f_submit'])){
 
     $email = $_POST['f_email_user'];
@@ -15,9 +17,9 @@ if( isset($_POST['f_submit'])){
 
     if($res == 0){//Verifica se a query obteve resultado
         
-        echo "<script>
-                alert('Login incorreto, tente novamente!');
-            </script>";
+        Header("Location: login_g.php?sucess=warning");
+        exit();
+        
     }else{
 
         $chave1 = "abcdefghijklmnopqrstuvxwz";
@@ -54,6 +56,7 @@ mysqli_close($conn);
     <link rel='stylesheet' type='text/css' href='_css/formulario.css'>
     <link rel='stylesheet' type='text/css' href='_css/anunciar.css'>
     <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
+    <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
     <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
     <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">   
@@ -64,9 +67,9 @@ mysqli_close($conn);
     <script>
         $(document).ready(function(){
             
-            $('#idmenu-mobile').click(function(){
-                $('#idmenu-mobile ul').toggle();
-            });
+            $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                });
         });
     </script>
 </head>
@@ -97,7 +100,7 @@ mysqli_close($conn);
                             
                             <div class="login_links">
                                 <p><a href="cadastro_login.php">Cadastrar-se</a></p>
-                                <p><a href="#">Esqueceu a senha?</a></p>
+                                <p><a href="resetLogin.php">Esqueceu a senha?</a></p>
                             </div>    
                             
                             <input type='submit' name='f_submit' value='Logar'> 
@@ -175,6 +178,56 @@ mysqli_close($conn);
         <?php require_once "rodape.php";?>
     
     </footer>
+    <?php
 
+    if($_GET['sucess'] === 'accept'){
+        echo "
+        <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+         
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuário cadastrado com sucesso!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        </script>
+        ";
+    }
+
+    if($_GET['sucess'] === 'warning'){
+        echo "
+        <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+         
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Email ou senha incorreto, tente novamente!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        </script>
+        ";
+    }
+
+    if($_GET['sucess'] === 'acceptRet'){
+        echo "
+        <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Senha Refefinida com Sucesso!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        </script>
+        ";
+    }
+    ?>
+
+        
 </body>
 </html>

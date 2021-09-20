@@ -67,6 +67,7 @@
         <link rel='stylesheet' type='text/css' href='_css/formulario.css'>
         <link rel='stylesheet' type='text/css' href='_css/anunciar.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">   
@@ -77,9 +78,30 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.iconMobile').on("click",function(){
+
+                    $('.menuMobileBox').slideDown(500);
+
                 });
+
+                $(".abreCat").click(function(){
+                        $(".subMenuMobile").slideToggle(500, function(){
+                            $(".menuMobileBox li:nth-of-type(5)").css("padding-bottom","0px");
+
+                                var icone = $(".abreCat").parent().get();
+                                $(icone).attr("class", "icon-menu4"); 
+                                if(!$(".subMenuMobile").is(":visible")){
+                            
+                            var icone = $(".abreCat").parent().get();
+                            $(icone).attr("class", "icon-menu3"); 
+                            console.log($(this));
+                        }
+                        
+                        });
+                        
+                        
+                });
+                $(".menuMobileBox li:nth-of-type(5)").css("padding","30px 20px");
             });
         </script>
     </head>

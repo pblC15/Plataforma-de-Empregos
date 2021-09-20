@@ -10,12 +10,13 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 //Verifica se os campos email e mensagem foram setados e se é diferente de vazio removendo os espaços com trim()     
-if((isset($_POST['f_email_e']) && !empty(trim($_POST['f_email_e']))) && (isset($_POST['f_nome_e']) && !empty(trim($_POST['f_nome_e'])))){
+if((isset($_POST['f_email']) && !empty(trim($_POST['f_email']))) && (isset($_POST['f_nome']) && !empty(trim($_POST['f_nome'])))){
 
     //Obtendo os valores passados no formulário e colocando dentro de uma variável usando operador térnario
-    $nome = $_POST['f_nome_e'];
-    $email = $_POST['f_email_e'];
-    $tipo_vaga = $_POST['f_tipo_e'];
+    $nome = filter_input(INPUT_POST, 'f_nome', FILTER_DEFAULT);
+    $email = filter_input(INPUT_POST, 'f_email', FILTER_VALIDATE_EMAIL);
+    $assunto = filter_input(INPUT_POST, 'f_assunto', FILTER_SANITIZE_STRING);
+    $mensagem = filter_input(INPUT_POST, 'f_mensagem', FILTER_SANITIZE_STRING);
     $data = date("d-m-Y H:i:s");//Data atual de acordo com o sistema operacional 
 
 
@@ -37,15 +38,17 @@ if((isset($_POST['f_email_e']) && !empty(trim($_POST['f_email_e']))) && (isset($
 
     //Contéudo do email enviado
     $mail->isHTML(true);//Envia o contéudo como HTML
-    $mail->Subject = "Vagas GoolbeeEmpregos";
-    $mail->Body    = "Boa tarde $nome<br>
-                      Agora você receberá email de vagas a qual você escolheu.<br>
-                      Data/Hora: $data";
+    $mail->Subject = "Contato GoolbeeEmpregos | {$assunto}";
+    $mail->Body    = "Como vai Prezado?<br><br>
+                      O cliente {$nome} do site GoolbeeEmpregos entrou em contato solicitando suporte<br>
+                      <br><br>Mensagem: {$mensagem}.<br><br>
+                      Favor retornar no email: {$email}<br>
+                      Data/Hora: {$data}";
 
     //Verifica se o email foi enviado, se foi enviado ele exibe uma mensagem de sucesso
     if($mail->send()){
 
-        header('Location: emailSucesso2.php?tipo='.$tipo_vaga);
+        header('Location: emailSucesso.php?name='.$nome);
 
     }else {//Se o email não foi enviado ele da uma mensagem de erro
 

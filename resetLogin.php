@@ -5,49 +5,53 @@
   //Obter dados do formulario
   if(isset($_POST['f_submit'])){
 
-    $nome = trim(filter_var($_POST['f_user'], FILTER_SANITIZE_STRING));
-    $sobreNome = trim(filter_var($_POST['f_sobreNome'], FILTER_SANITIZE_STRING));
-    $password = trim($_POST['f_passwrd'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = trim(filter_var($_POST['f_email_user']), FILTER_VALIDATE_EMAIL);
+    $newPasswr = trim(filter_var($_POST['f_passw'], FILTER_SANITIZE_SPECIAL_CHARS));
+    $passward = trim(filter_var($_POST['f_passw_res'], FILTER_SANITIZE_SPECIAL_CHARS));
+    $email = trim(filter_var($_POST['f_email_user'], FILTER_VALIDATE_EMAIL));
 
-    if(!empty($email)){
+    if($newPasswr != $passward){
 
-        $sql = "SELECT * FROM tb_usuario WHERE email_user = {$email}";
+        Header("Location:resetLogin.php?sucess=error");
+        echo"deu ruim";
+        exit();
 
-        $res = mysqli_query($conn, $sql);
-        $ret = mysqli_affected_rows($conn);
-        // $ret = mysqli_fetch_array($res);
+    }else{
 
-        if($ret > 0){
+        $sql = "SELECT * FROM tb_usuario WHERE email_user = '{$email}'";
 
-            Header('Location: cadastro_login.php?sucess=error');
+        $exec = mysqli_query($conn, $sql);
+        $reslt = mysqli_affected_rows($conn);
 
-        }else {
-        
-            $sql = "INSERT INTO tb_usuario(nome_user, sobre_nome, password_user, email_user, acesso) VALUES('{$nome}', '{$sobreNome}', '{$password}', '{$email}', 1)";
+        if($reslt >= 1){
 
-            $res = mysqli_query($conn, $sql);
-            $ret = mysqli_affected_rows($conn);
+            $stmt = "UPDATE tb_usuario SET password_user = '{$newPasswr}'";
 
-            if($ret >= 1){
+            $exec = mysqli_query($conn, $stmt);
+            $reslt = mysqli_affected_rows($conn);
 
-                Header('Location: login_g.php?sucess=accept');
-            
+            if($reslt >= 1){
 
-            }else {
-                echo "<p class='mensagemEmail'>Login não cadastrado!</p>";
+                Header("Location: login_g.php?sucess=acceptRet");
+                exit();
+
             }
+
+        }else{
+
+            Header("Location: resetLogin.php?sucess=errorEmail");
+            exit();
+
         }
     }
 
   }
-  
+
 ?>
 
 <!DOCTYPE html> 
 <html lang='pt-br'>
 <head>
-    <title>Cadastro Login | Goolbee</title>
+    <title>Login | Goolbee</title>
     <link rel='stylesheet' type='text/css' href='_css/cabecalho.css'>
     <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
     <link rel='stylesheet' type='text/css' href='_css/formulario.css'>
@@ -83,21 +87,18 @@
         
             <div class='anuncio-principal'>
                 
-                <h2>Faça seu Cadastro</h2>
+                <h2>Redefinir Senha: </h2>
                     
                     <div class='formulario form-cadastro-login'>
-                        <form action='cadastro_login.php' method='post'>
+                        <form action='resetLogin.php' method='post'>
 
-                            <label for='id_user'>Nome:</label>
-                            <input type='text' name='f_user' id='id_user' required='required'>
-                           
-                            <label for='id_sobreNome'>Sobrenome:</label>
-                            <input type='text' name='f_sobreNome' id='id_sobreNome' required='required'>
+                            <label for='id_user'>Nova Senha:</label>
+                            <input type='text' name='f_passw' id='id_user' required='required'>
 
-                            <label for='id_nomeE'>Senha:</label>
-                            <input type='text' name='f_passwrd' id='id_nomE' required='required'>
+                            <label for='id_nomeE'>Comfirmar Senha:</label>
+                            <input type='text' name='f_passw_res' id='id_nomE' required='required'>
                                 
-                            <label for='id_email_user'>Email:</label>
+                            <label for='id_email_user'>Informe seu Email:</label>
                             <input type='email' name='f_email_user'  id='id_email_user' required='required'>
 
                             <input type='submit' name='f_submit' value='Enviar'> 
@@ -154,14 +155,26 @@
     </footer>
 <?php
 
+
     if($_GET['sucess'] === 'error'){
         echo "
         <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         <script>
         Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'O email já existe, favor tente novamente!'
+        text: 'As senhas são diferentes, favor tentar novamente!'
+        });
+        </script>
+        ";
+    }
+
+    if($_GET['sucess'] === 'errorEmail'){
+        echo "
+        <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+        icon: 'error',
+        text: 'O email informado não existe!'
         });
         </script>
         ";

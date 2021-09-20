@@ -28,13 +28,18 @@
         <header class='cabecalho-principal'>
            <?php 
                 require_once'cabecalho.php';
-                require_once "conx.php";
+                require_once "config/conx.php";
+
+                $nome =  ucwords(filter_input(INPUT_GET, "name", FILTER_SANITIZE_STRING));
+                
 
                 $sql = "SELECT * FROM tb_cadastro";
 
                 $result = mysqli_query($conn, $sql);
 
                 $exibe = mysqli_fetch_array($result);
+
+
            ?>
         </header>
 
@@ -50,7 +55,7 @@
 
                     <div class='mensagem-sucesso'>
  
-                    <p>Obrigado por entrar em contato conosco, responderemos em até 48 Horas pelo E-mail preenchido no formulário.</p>
+                    <p>Obrigado <?php echo "{$nome}"; ?> por entrar em contato conosco, responderemos em até 48 Horas pelo E-mail preenchido no formulário.</p>
                 
                     </div>
 

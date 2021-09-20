@@ -1,7 +1,7 @@
 
 <?php 
-    require_once 'config.php';
-    require_once 'conx.php';
+    require_once 'config/config.php';
+    require_once 'config/conx.php';
 
     if(isset($_SESSION["numLogin"])){
 
@@ -33,6 +33,7 @@
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
         <link rel='stylesheet' type='text/css' href='_css/contato.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -43,8 +44,8 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
             });
         </script>
@@ -67,7 +68,7 @@
                 <?php 
 
                 require_once "_function/functionTexto.php";
-                require_once "conx.php";
+                require_once "config/conx.php";
 
                     if(isset($_POST['f_name'])){
 
@@ -77,7 +78,7 @@
 
                     }else if($_GET['f_name']){
                         
-                        echo "<h2>Vagas de".ucwords($_GET['f_name'])."</h2>";
+                        echo "<h2>Vagas de ".ucwords($_GET['f_name'])."</h2>";
                         $nome_pesq = $_GET['f_name'];
                     }
                 
@@ -169,7 +170,7 @@
                             echo "<form action='pesquisa.php' method='get' name='form_pesquisar'>
                                     <div class='box_pesquisa'>
                                         <input type='text' name='f_name' placeholder='Busque vagas pelo nome' required='required'>
-                                        <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
+                                        <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
                                     </div>
                                  </form>";
                         }else{
@@ -177,7 +178,7 @@
                             echo "<form action='pesquisa.php?num=".$_SESSION['numLogin']."' method='POST' name='form_pesquisar'>
                                     <div class='box_pesquisa'>
                                         <input type='text' name='f_name' placeholder='Busque vagas pelo nome' required='required'>
-                                        <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
+                                        <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
                                     </div>
                                 </form>";
 
@@ -217,7 +218,7 @@
                                     <input type="submit" name="f_submit_email" value="Enviar">
                                 </form>
                                 <?php 
-                                    require_once "conx.php";
+                                    require_once "config/conx.php";
                                     //Obter dados do formulario
                                     if(isset($_POST['f_submit_email'])){
 

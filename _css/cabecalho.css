@@ -79,41 +79,70 @@ header.cabecalho-principal nav.menu-desktop ul li a:hover {
 
 /********MENU-MOBILE*********/
 
-header.cabecalho-principal nav.menu-mobile {
+header.cabecalho-principal .menu-mobile {
     display: none;
-    width: 60px;
-    height: 45px;
     float: right;
-    margin-right: 10px;
-    margin-top: 40px;
-    background-image: url('../_imgs/menu-mobile.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    cursor: pointer;
+    width: calc(100% - 260px);
+    height: 100%;
+    padding-left: 25%;
 }
 
-header.cabecalho-principal nav.menu-mobile ul {
-    display: none;
-    position: absolute;
-    left: 0px;
-    top: 120px;
+header.cabecalho-principal .menu-mobile .iconMobile {
+    background-image: url('../_imgs/menu-mobile.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     list-style: none;
     width: 100%;
-    text-align: center;
-    background-color: #2f98d1;
+    height: 50px;
+    margin-top: 40px;
+    text-align: left;
 }
 
-header.cabecalho-principal nav.menu-mobile ul li {
-    padding: 10px 0;
+.menuMobileBox {
+    position: absolute;
+    top: 133px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    background-color: #222222;
+    z-index: 999;
+    border-bottom: 5px solid #0077b5;
+    display: none;
 }
 
-header.cabecalho-principal nav.menu-mobile ul li a {
-    color: white;
+.menuMobileBox li {
+    padding: 30px 20px;
+    font-size: 19px;
+}
+
+.menuMobileBox li a {
+    color: #FFF;
     text-decoration: none;
+    margin-left: 15px;
+    font-style: italic;
 }
 
-header.cabecalho-principal nav.menu-mobile ul li:hover {
-    background-color: #40a9e2;
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    color: #FFF;
+}
+
+.subMenuMobile {
+    display: none;
+    list-style: none;
+}
+
+.subMenuMobile li {
+    font-size: 15px;
+}
+
+.abreCat {
+    color: #FFF;
+}
+
+.subMenuMobile li:nth-of-type(4) {
+    padding-bottom: 0px;
 }
 
 
@@ -170,10 +199,13 @@ header.cabecalho-submenu nav.sub-menu ul li:hover {
 
 @media screen and (max-width: 920px) {
     header.cabecalho-principal {
-        height: 180px;
+        height: 130px;
     }
     header.cabecalho-principal nav.menu-desktop ul {
         display: none;
+    }
+    .menu-mobile {
+        display: flex !important;
     }
     header.cabecalho-principal .logo img {
         width: 250px;
@@ -181,14 +213,34 @@ header.cabecalho-submenu nav.sub-menu ul li:hover {
         margin-top: 10px;
         padding: 0 2%;
     }
-    header.cabecalho-principal nav.menu-mobile {
-        display: inline-block;
-    }
-    header.cabecalho-principal nav.menu-mobile ul {
-        z-index: 999;
-    }
     /***********SUB MENU************/
     header.cabecalho-submenu nav.sub-menu {
         display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header.cabecalho-principal .logo {
+        width: 230px;
+        height: 100px;
+    }
+    header.cabecalho-principal .logo img {
+        width: 100%;
+    }
+    header.cabecalho-principal .menu-mobile {
+        padding-left: 0%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    header.cabecalho-principal .logo {
+        width: 180px;
+        height: 100px;
+    }
+    header.cabecalho-principal .logo a {
+        text-align: center;
+    }
+    header.cabecalho-principal .menu-mobile {
+        width: calc(100% - 210px);
     }
 }

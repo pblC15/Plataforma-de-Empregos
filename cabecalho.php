@@ -38,50 +38,38 @@
         </ul>
     </nav><!--FIM DA NAV MENU-->
 
-    <nav id='idmenu-mobile' class='menu-mobile'>
-        <ul>
-        <?php
-            if(isset($_GET['numLogin'])){
-                if(isset($_GET["num"])){
-    
-                    $n1=$_GET["num"];
-                    
-                }else if(isset($_POST["num"])){
-                    
-                    $n1=$_POST["num"];
-                }
-                $n2=$_SESSION["numLogin"];
-            
-                if($n1!=$n2){
-                    echo "<p>Login não efetuado</p>";
-                    exit;
-                }
-
-                echo "<li><a href='index?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a></li>
-                      <li><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>
-                      <li><a href='sobre.php?num=".$_SESSION['numLogin']."'>SOBRE</a></li>
-                      <li><a href='contato.php?num=".$_SESSION['numLogin']."'>CONTATO</a></li>
-                      <li><a href='vagas.php?num=".$_SESSION['numLogin']."&pagina=1'>VAGAS</a></li>
-                      <li><a href='estagio.php?num=".$_SESSION['numLogin']."&pagina=1'>ESTAGIO</a></li>
-                      <li><a href='nivelsuperior.php?num=".$_SESSION['numLogin']."&pagina=1'>NIVEL SUPERIOR</a></li>
-                      <li><a href='noticias.php?num=".$_SESSION['numLogin']."&pagina=1'>NOTICIAS</a></li>";
-
+    <nav  class='menu-mobile'>
+    <ul class="iconMobile">
+        <li>
+            <ul class="menuMobileBox">
+            <?php
+                if(!isset($_SESSION['numLogin'])){
                 
-                     
-            }else{
+                    echo "<li class='icon-home'><a href='index?pagina=1'>HOME</a></li>
+                        <li class='icon-clipboard'><a href='sobre.php'>SOBRE</a></li>
+                        <li class='icon-bubbles2'><a href='contato.php'>CONTATO</a></li>
+                        <li class='icon-user'><a href='login_g.php'>LOGAR</a></li>";
+                }else{
 
-                echo "  <li><a href='index?pagina=1'>HOME</a></li>
-                        <li><a href='sobre.php'>SOBRE</a></li>
-                        <li><a href='contato.php'>CONTATO</a></li>
-                        <li><a href='vagas.php?pagina=1'>VAGAS</a></li>
-                        <li><a href='estagio.php?pagina=1'>ESTAGIO</a></li>
-                        <li><a href='nivelsuperior.php?pagina=1'>NIVEL SUPERIOR</a></li>
-                        <li><a href='noticias.php'>NOTICIAS</a></li>";
-            }
-            
+                    echo "<li class='icon-home'><a href='index.php?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a></li>
+                    <li class='icon-folder-upload'><a href='anunciar.php?num=".$_SESSION['numLogin']."'>ANUNCIAR</a></li>
+                    <li class='icon-clipboard'><a class='sobre.php?num=".$_SESSION['numLogin']."'>SOBRE</a></li>
+                    <li class='icon-bubbles2'><a href='contato.php?num=".$_SESSION['numLogin']."'>CONTATO</a></li>
+                    <li class='icon-menu3'><span class='abreCat'>CATEGORIAS</span>
+                        <ul class='subMenuMobile'>
+                            <li class='icon-accessibility'><a href='vagas.php?num=".$_SESSION['numLogin']."&pagina=1'>VAGAS RECENTES</a></li>
+                            <li class='icon-user-tie'><a href='nivelsuperior?num=".$_SESSION['numLogin']."&pagina=1'>NIVEL SUPERIOR</a></li>
+                            <li class='icon-user-check'><a href='estagio.php?num=".$_SESSION['numLogin']."&pagina=1'>ESTÁGIO</a></li>
+                            <li class='icon-phone'><a href='cursos.php?num=".$_SESSION['numLogin']."&pagina=1'>CURSOS</a></li>
+                        </ul></li>
+                    <li class='icon-newspaper'><a href='noticias.php?num=".$_SESSION['numLogin']."'>NOTICIAS</a></li>
+                    <li class='icon-exit'><a href='logOut.php?token=".md5(session_id())."'>SAIR</a></li>";
+
+                }
             ?>
-
-        </ul>
+            </ul>
+        </li>
+    </ul>
     </nav><!--FIM DA NAV MENU -->
 
     <div class='clear'></div><!--LIMPANDO OS FLOATS -->
@@ -199,3 +187,10 @@
     <div class='clear'></div>
 
 </div>
+<script type="text/javascript" src="_js/jquery-3.5.1.min.js"></script>
+<script>
+   $(function(){
+
+        
+   });
+</script>

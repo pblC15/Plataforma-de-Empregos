@@ -1,11 +1,12 @@
-.text-alert{
+.text-alert {
     background-color: rgba(255, 0, 0, 0.3);
-    border:2px solid red;
+    border: 2px solid red;
     border-radius: 10px;
     padding: 10px;
     line-height: 25px;
 }
-.anuncio-principal1{
+
+.anuncio-principal1 {
     display: flex;
     flex-direction: row;
     margin-top: 40px;
@@ -16,50 +17,55 @@
     border-right: 2px solid #ccc;*/
     padding: 10px;
 }
-.anuncio-principal1 .img-sucesso{
+
+.anuncio-principal1 .img-sucesso {
     float: left;
     width: 250px;
     height: 150px;
     margin-right: 0px;
 }
-.img-sucesso img{
+
+.img-sucesso img {
     width: 100%;
     height: 100%;
- 
 }
-.anuncio-principal1 .mensagem-sucesso{
+
+.anuncio-principal1 .mensagem-sucesso {
     float: left;
     width: 100%;
     padding: 10px;
     text-align: justify;
 }
-.mensagem-sucesso p{
+
+.mensagem-sucesso p {
     font-size: 20px;
+    width: 95%;
     color: rgb(150, 150, 150);
     font-weight: 600;
     margin-top: 20px;
 }
-.mensagem-sucesso a{
+
+.mensagem-sucesso a {
     text-decoration: none;
 }
-@media screen and (max-width: 500px){
-    .anuncio-principal1{
+
+@media screen and (max-width: 500px) {
+    .anuncio-principal1 {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    .anuncio-principal1 .img-sucesso{
+    .anuncio-principal1 .img-sucesso {
         float: none;
         width: 100%;
         text-align: center;
     }
-    .img-sucesso img{
+    .img-sucesso img {
         width: 150px;
         height: 100px;
     }
-    .anuncio-principal1 .mensagem-sucesso{
+    .anuncio-principal1 .mensagem-sucesso {
         float: none;
         width: 100%;
-  
     }
 }
