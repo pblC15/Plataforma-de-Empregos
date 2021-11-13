@@ -1,10 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Saira+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Saira+Condensed:wght@300&family=Yanone+Kaffeesatz:wght@300&display=swap');
+.breve-vaga .desc-vaga p {
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Saira Condensed', sans-serif;
+    font-family: 'Saira Condensed', sans-serif !important;
+}
+
+main * {
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Saira Condensed', sans-serif !important;
+    font-family: 'Saira Condensed', sans-serif !important;
+}
+
+span.dados {
+    font-family: 'Saira Condensed', sans-serif !important;
+    font-family: 'Saira Condensed', sans-serif !important;
+}
+
+.anuncio-principal .titulo-vaga h1 {
+    font-size: 2.5em;
+    color: #0077b5;
+}
+
 section.conteudo .anuncio-principal {
     float: left;
     width: 65%;
     height: auto;
-    /*     border-left: 2px solid  #ccc;
-    border-right: 2px solid #ccc; */
     padding: 10px;
+    margin-bottom: 50px;
 }
 
 section.conteudo .anuncio-principal h2 {
@@ -26,6 +49,17 @@ section.conteudo .breve-vaga {
     display: inline-block;
 }
 
+section.conteudo .breve-vaga1 {
+    border: 3px solid #ccc;
+    box-shadow: 1px 1px 10px 1px #ccc;
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 .breve-vaga .img-vaga {
     float: left;
     width: 45%;
@@ -33,7 +67,14 @@ section.conteudo .breve-vaga {
     margin-right: 20px;
 }
 
-.breve-vaga .img-vaga img {
+.breve-vaga1 .img-vaga {
+    width: 80%;
+    height: 250px;
+    margin: 10px auto;
+}
+
+.breve-vaga .img-vaga img,
+.breve-vaga1 .img-vaga img {
     width: 100%;
     height: 100%;
     border: 1px solid #ccc;
@@ -42,6 +83,11 @@ section.conteudo .breve-vaga {
 .breve-vaga .desc-vaga {
     width: 50%;
     float: left;
+}
+
+.breve-vaga1 .desc-vaga {
+    width: 100%;
+    padding: 5px 15px;
 }
 
 .breve-vaga .desc-vaga h3 a {
@@ -53,12 +99,33 @@ section.conteudo .breve-vaga {
     font-weight: 600;
 }
 
-.breve-vaga .desc-vaga h3 a:hover {
+.breve-vaga1 .desc-vaga h3 a {
+    width: 100%;
+    color: #4096c5;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #ccc;
+    text-align: center;
+    font-weight: 600;
+}
+
+.titulo_vaga {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.breve-vaga .desc-vaga h3 a:hover,
+.breve-vaga1 .desc-vaga h3 a:hover {
     text-decoration: underline;
 }
 
 .breve-vaga .desc-vaga p {
+    text-align: left;
     margin-top: 8px;
+}
+
+.breve-vaga1 .desc-vaga p {
+    margin-top: 8px;
+    text-align: justify;
 }
 
 .breve-vaga .desc-vaga p a {
@@ -66,6 +133,16 @@ section.conteudo .breve-vaga {
     margin-top: 40px;
     padding: 5px;
     font-size: 0.8em;
+    background-color: #0077b5;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.breve-vaga1 .desc-vaga p a {
+    float: right;
+    padding: 11px;
+    font-size: 1em;
     background-color: #0077b5;
     border-radius: 5px;
     text-decoration: none;
@@ -121,12 +198,11 @@ section.conteudo .breve-vaga {
 
 .anuncio-principal .descricao-vaga {
     width: 100%;
-    padding: 10px;
+    padding: 50px 10px;
 }
 
 .anuncio-principal .titulo-vaga {
     margin: 5px;
-    padding-bottom: 15px;
 }
 
 .anuncio-principal .titulo-vaga a {
@@ -163,7 +239,21 @@ section.conteudo .breve-vaga {
     box-shadow: 1px 1px 10px 1px #ccc;
 }
 
-.data-icone p {
+.data-icone1 {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 1px #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.data-icone p,
+.data-icone1 p {
     margin-top: -2px;
     margin-left: 5px;
     font-size: 13px;
@@ -195,6 +285,7 @@ section.conteudo .breve-vaga {
     font-weight: 600;
     color: rgb(120, 120, 120);
     text-align: left;
+    font-family: 'Saira Condensed', sans-serif !important;
 }
 
 .detalhe-vaga .requisitos .dados,
@@ -245,6 +336,68 @@ span.dados {
 }
 
 
+/*NOTICIAS*/
+
+.detalhe-noticias {
+    position: relative;
+    display: inline-box;
+    border-top: 3px solid #2f98d1;
+    margin: 5px;
+}
+
+.conteudo-noticia-img h3 {
+    width: 100%;
+    color: #4096c5;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 900;
+    margin: 30px 0;
+    font-size: 28px;
+}
+
+.conteudo-noticia-img img {
+    width: 100%;
+    height: 300px;
+}
+
+.desc-noticia {
+    margin-top: 20px;
+}
+
+.desc-noticia p {
+    line-height: 35px;
+    text-align: justify;
+}
+
+
+/*CURRICULO*/
+
+.tituloCurriculo {
+    margin: 30px 0;
+    font-size: 2.1em;
+    color: #0077b5;
+}
+
+.descCurriculo p {
+    margin: 15px 0;
+    color: #333;
+    line-height: 30px;
+    text-align: justify;
+}
+
+.contentCurriculo {
+    text-align: center !important;
+}
+
+.tituloDescCurriculo {
+    text-align: left !important;
+}
+
+.listCurriculo {
+    list-style-position: inside;
+}
+
+
 /*CONTEUDO LATERAL*/
 
 aside.lateral {
@@ -275,6 +428,8 @@ aside .conteudo-lateral h2 {
     width: 100%;
     background: linear-gradient(to bottom, #0066ff 10%, #3399ff 68%);
     color: white;
+    padding: 10px;
+    font-size: 15px;
 }
 
 aside .conteudo-lateral img {
@@ -347,7 +502,7 @@ td {
 }
 
 .form-lateral h2 {
-    font-size: 17px;
+    font-size: 15px;
     background: linear-gradient(to bottom, #0066ff 10%, #3399ff 68%);
     color: white;
     padding: 10px 0;
@@ -432,7 +587,7 @@ td {
     }
     /*Pagina anuncio-vaga*/
     .anuncio-principal .titulo-vaga h3 {
-        text-align: center;
+        text-align: left;
         width: 100%;
     }
     .data-icone {
@@ -465,17 +620,43 @@ td {
         float: none;
         text-align: center;
     }
+    .detalhe-vaga p {
+        text-align: justify;
+    }
     .breve-vaga .desc-vaga a {
         float: none;
         display: inline-block;
-        width: 50%;
+        width: 32%;
         margin-top: 10px;
+        font-size: 0.9em;
     }
     .data-icone {
-        width: 100%;
+        width: 65%;
     }
     .tipo-icone {
+        width: 65%;
+    }
+    .breve-vaga1 .desc-vaga {
+        padding: 5px;
+    }
+    .titulo_vaga {
+        text-align: justify;
+    }
+    .breve-vaga1 .img-vaga {
         width: 100%;
+    }
+    .breve-vaga1 .desc-vaga p a {
+        margin-top: 20px;
+        padding: 9px
+    }
+    .conteudo-noticia-img h3 {
+        text-align: left;
+    }
+    section.conteudo .anuncio-principal {
+        padding: 10px 1%;
+    }
+    footer {
+        margin-top: 50px;
     }
 }
 

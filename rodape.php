@@ -84,7 +84,6 @@
                 <span class="icon-facebook"></span>
                 <span class="icon-twitter"></span>
                 <span class="icon-instagram"></span>
-                <span class="icon-whatsapp"></span>
                 <span class="icon-mail2"></span>
             </div>
             <p>Acesse nossas redes socias</p>

@@ -1,12 +1,18 @@
+<?php 
+
+session_start();
+
+?>
 <!DOCTYPE html> 
 <html lang='pt-br'>
     <head>
-        <title>Anunciar Vagas</title>
+        <title>Email Sucesso</title>
         <link rel='stylesheet' type='text/css' href='_css/cabecalho.css'>
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/formulario.css'>
         <link rel='stylesheet' type='text/css' href='_css/anunciar.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -17,18 +23,31 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
             });
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+         <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
         </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once'cabecalho.php';
-                require_once "config/conx.php";
+                require_once __DIR__.'/cabecalho.php';
+                require_once __DIR__."/config/conx.php";
 
                 $sql = "SELECT * FROM tb_cadastro";
 
@@ -42,7 +61,7 @@
             
             <div class='container'>
             
-                <div class='anuncio-principal1'>
+                <div class='anuncio-principal1 altura'>
 
                     <div class='img-sucesso'>
                         <img src="_imgs/icone/icone1.png">
@@ -55,7 +74,19 @@
                     ?>
  
                     <p>Obrigado por cadastrar seu email para receber vagas de emprego recentes de "<?php echo "$tipo"; ?>" a qual você escolheu.</p>
-                
+                    <p>Será enviado emails da vaga desejada toda semana, caso não queria mais receber emails, favor clicar em "Não quero mais receber vagas" na parte inferior de qualquer email enviado.
+                        <div class="directionUser">
+                            <?php
+
+                                if(!isset($_SESSION['numLogin'])){
+                                    echo "<a href='index.php'>Pagina Inicial</a>";
+                                }else{
+                                    echo "<a href='index.php?num=".$_SESSION['numLogin']."'>Pagina Inicial</a>";
+                                }
+
+
+                            ?>
+                        </div>
                     </div>
 
                     <div class='clear'></div>
@@ -77,14 +108,25 @@
                                 </form>
                         
                         </div><!--Fim da pesquisa lateral -->
-                        
+                    </aside>
+                    <aside class="lateral">
                         <!--CONTEUDO LATERAL -->
                         <div class='conteudo-lateral'>
                         <!--Propaganda -->
-                            <h2>Dicas</h2>
+                            <?php
+                                if(!isset($_SESSION['numLogin'])){
+                                    echo "<a href='apCurriculo.php'>
+                                            <h2>Dicas</h2>
+                                            <img src='_imgs/rascunho/curriculo.jpg'>
+                                            </a>";
+                                }else{
 
-                                <img src='_imgs/rascunho/curriculo.jpg'>
-                        
+                                    echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                            <h2>Dicas</h2>
+                                            <img src='_imgs/rascunho/curriculo.jpg'>
+                                            </a>";
+                                }
+                            ?>
                         </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
                         
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
@@ -95,7 +137,7 @@
 
         <footer>
            
-             <?php require_once "rodape.php";?>
+             <?php require_once __DIR__."/rodape.php";?>
            
         </footer>
     </body>

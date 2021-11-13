@@ -1,7 +1,8 @@
-
 <?php 
-    require_once 'config/config.php';
-    require_once 'config/conx.php';
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    require_once __DIR__.'/config/config.php';
+    require_once __DIR__.'/config/conx.php';
 
     if(isset($_SESSION["numLogin"])){
 
@@ -17,7 +18,7 @@
         $n2=$_SESSION["numLogin"];
         
         if($n1!=$n2){
-            echo "<p>Login não efetuado</p>";
+            header("Location: noticias.php");
             exit;
         }
     }
@@ -30,6 +31,7 @@
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
         <link rel='stylesheet' type='text/css' href='_css/contato.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -40,38 +42,31 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
-                
-                var slides=["#s1","#s2","#s3"];
-                slideatual=0;
-                slidemax=2;
-                tempo=8000;
-
-                $(slides[slideatual]).fadeTo(1000,1);
-                setInterval(troca,tempo);	
-                
-                function troca(){
-                    $(slides[slideatual]).fadeTo(1000,0, function(){
-                        $(slides[slideatual]).hide();
-                        slideatual++;
-
-                        if(slideatual > slidemax){
-                            slideatual=0;
-                        }
-                       $(slides[slideatual]).fadeTo(1000,1);
-                    });
-                }
             
             });
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
         </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once'cabecalho.php';
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
         
@@ -82,17 +77,15 @@
              
                 <div class='anuncio-principal'>
                     <!--BANER -->
-                    <div class='banner-contato-1'>
-                        <img id="s1" src="_imgs/rascunho/baner-principal.png">
-                        <img id="s2" src="_imgs/rascunho/baner-2.jpg">
-                        <img id="s3" src="_imgs/rascunho/baner-3.jpg">
+                    <div class='banner-contato-2'>
+                        <img src="_imgs/rascunho/baner-principal.png">
                     </div>
 
-                    <h2>Vagas Recentes</h2>
+                    <h2>Noticias mais Recentes</h2>
                     
                     <?php 
-                        require_once "config/conx.php";
-                        require_once "_function/functionTexto.php";
+                        require_once __DIR__."/config/conx.php";
+                        require_once __DIR__."/_function/functionTexto.php";
                         //Obtendo a pagina vinda da URL
                         $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
                         //Se tiver vazia seta o 1
@@ -108,22 +101,44 @@
 
                         while($exibe = mysqli_fetch_array($result)){
 
-                            echo "<div class='breve-vaga'>";
+                            if(!isset($_SESSION['numLogin'])){
+                                
+                                echo "<div class='breve-vaga1'>";
 
-                                echo "
-                                <div class='img-vaga'>
+                                    echo "
+                                    <div class='img-vaga'>
 
-                                    <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
+                                        <a href='noticia-em-destaque.php?id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
 
-                                </div>
-                                <div class='desc-vaga'>
-                                    <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
-                                    <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
-                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
-                                    <p><a href='#'>Ver mais</a></p>
-                                </div>
-                                <div class='clear'></div>
-                            </div><!--FIM DA DIV BREVE-VAGA -->";
+                                    </div>
+                                    <div class='desc-vaga'>
+                                        <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
+                                        <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
+                                        <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
+                                        <p><a href='noticia-em-destaque.php?id=".$exibe['id']."'>Ver mais</a></p>
+                                    </div>
+                                    <div class='clear'></div>
+                                </div><!--FIM DA DIV BREVE-VAGA -->";
+
+                            }else{
+
+                                echo "<div class='breve-vaga1'>";
+
+                                    echo "
+                                    <div class='img-vaga'>
+                                        <a href='noticia-em-destaque.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
+
+                                    </div>
+                                    <div class='desc-vaga'>
+                                        <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
+                                        <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
+                                        <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
+                                        <p><a href='noticia-em-destaque.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>Ver mais</a></p>
+                                    </div>
+                                    <div class='clear'></div>
+                                </div><!--FIM DA DIV BREVE-VAGA -->";
+
+                            }
                         }
                         echo "<div class='paginacao'>";
                         //Contando quantos resultados tem na tabela
@@ -137,7 +152,11 @@
                         $qtd_pg = ceil($result['num_result'] / $qtd_item);
 
                         echo "<a class='pri_pg' href='noticias.php?pagina=1'>Primeira</a>";
-
+                        if(!isset($_SESSION['numLogin'])){
+                            echo "<a class='pri_pg' href='noticias.php?pagina=1'>Primeira</a>";
+                        }else{
+                            echo "<a class='pri_pg' href='noticias.php?num=".$_SESSION['numLogin']."pagina=1'>Primeira</a>";
+                        }
 
                         for($i = 1; $i <= $qtd_pg; $i++){
                 
@@ -155,7 +174,12 @@
                     
                             }
                         }
-                        echo "<a class='ult_pg' href='noticias.php?pagina=$qtd_pg'>Último</a>";
+                        if(!isset($_SESSION['numLogin'])){
+                            echo "<a class='ult_pg' href='noticias.php?pagina=$qtd_pg'>Último</a>";
+                        }else{
+                            echo "<a class='ult_pg' href='noticias.php?num=".$_SESSION['numLogin']."&pagina=$qtd_pg'>Último</a>";
+                        }
+                        
                         echo "</div>";
                     ?>
 
@@ -196,9 +220,20 @@
                     <!--CONTEUDO LATERAL -->
                     <div class='conteudo-lateral'>
                     <!--Propaganda -->
-                        <h2>Dicas</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
-                    
+                        <?php
+                            if(!isset($_SESSION['numLogin'])){
+                                echo "<a href='apCurriculo.php'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }else{
+
+                                echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }
+                        ?>    
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
                 </aside>
@@ -224,7 +259,7 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once "config/conx.php";
+                                require_once __DIR__."/config/conx.php";
                                 //Obter dados do formulario
                                 if(isset($_POST['f_submit_email'])){
 
@@ -257,8 +292,20 @@
                     <!--CONTEUDO LATERAL -->
                     <div class='conteudo-lateral'>
                     <!--Propaganda -->
-                        <h2>Dicas</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
+                        <?php
+                            if(!isset($_SESSION['numLogin'])){
+                                echo "<a href='apCurriculo.php'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }else{
+
+                                echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }
+                        ?>    
                     
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
@@ -271,7 +318,7 @@
         </section>
 
         <footer>
-            <?php require_once "rodape.php";?>
+            <?php require_once __DIR__."/rodape.php";?>
         </footer>
     </body>
 </html>

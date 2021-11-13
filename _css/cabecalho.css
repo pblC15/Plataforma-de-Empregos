@@ -76,6 +76,14 @@ header.cabecalho-principal nav.menu-desktop ul li a:hover {
     color: #ccc;
 }
 
+header.cabecalho-principal nav.menu-desktop ul li a:last-child {
+    text-decoration: none;
+}
+
+.botaoLog a:hover {
+    font-weight: 900;
+}
+
 
 /********MENU-MOBILE*********/
 
@@ -229,6 +237,9 @@ header.cabecalho-submenu nav.sub-menu ul li:hover {
     }
     header.cabecalho-principal .menu-mobile {
         padding-left: 0%;
+    }
+    .menuMobileBox li a {
+        padding: 15px 150px 5px 5px;
     }
 }
 

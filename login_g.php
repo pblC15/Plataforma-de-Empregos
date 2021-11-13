@@ -1,10 +1,8 @@
 <?php 
 
-require_once('config/conx.php');
+require_once __DIR__.'/config/conx.php';
 
-
-
-if( isset($_POST['f_submit'])){
+if(isset($_POST['f_submit'])){
 
     $email = $_POST['f_email_user'];
     $password = $_POST['f_senha'];
@@ -68,16 +66,29 @@ mysqli_close($conn);
         $(document).ready(function(){
             
             $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
-                });
+                $('.menu-mobile .menuMobileBox').slideToggle(500);
+            });
         });
+    </script>
+    <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-188173005-1');
     </script>
 </head>
 <body>
     <!--Cabeçalho principal -->
     <header class='cabecalho-principal'>
         <?php 
-            require_once('cabecalho.php');
+            require_once __DIR__.'/cabecalho.php';
         ?>
     </header>
 
@@ -99,7 +110,7 @@ mysqli_close($conn);
                             <input type='password' name='f_senha' id='id_senha' required='required'>
                             
                             <div class="login_links">
-                                <p><a href="cadastro_login.php">Cadastrar-se</a></p>
+                                <p><a href="cadastroLogin.php">Cadastrar-se</a></p>
                                 <p><a href="resetLogin.php">Esqueceu a senha?</a></p>
                             </div>    
                             
@@ -110,10 +121,21 @@ mysqli_close($conn);
             
             <aside class='lateral'>
                 <!--CONTEUDO LATERAL -->
-                <div class='conteudo-lateral'>
-                    
-                    <h2>Monetização e publicidade</h2>
-                        <img src='_imgs/rascunho/curriculo.jpg'>
+                <div class='conteudo-lateral'>              
+                    <?php
+                        if(!isset($_SESSION['numLogin'])){
+                            echo "<a href='apCurriculo.php'>
+                                    <h2>Dicas</h2>
+                                    <img src='_imgs/rascunho/curriculo.jpg'>
+                                    </a>";
+                        }else{
+
+                            echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                    <h2>Dicas</h2>
+                                    <img src='_imgs/rascunho/curriculo.jpg'>
+                                    </a>";
+                        }
+                     ?>
                 
                 </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
@@ -139,7 +161,7 @@ mysqli_close($conn);
                             <input type="submit" name="f_submit_email" value="Enviar">
                         </form>
                         <?php 
-                            require_once "config/conx.php";
+                            require_once __DIR__."/config/conx.php";
                             //Obter dados do formulario
                             if(isset($_POST['f_submit_email'])){
 
@@ -175,7 +197,7 @@ mysqli_close($conn);
 
     <footer>
 
-        <?php require_once "rodape.php";?>
+        <?php require_once __DIR__."/rodape.php";?>
     
     </footer>
     <?php

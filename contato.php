@@ -1,40 +1,40 @@
 <?php 
-    require_once 'config/config.php';
-    require_once 'config/conx.php';
+ ini_set('display_errors', 1);
+  error_reporting(E_ALL);
+    require_once  __DIR__.'/config/config.php';
+    require_once  __DIR__.'/config/conx.php';
 
-    // if(isset($_SESSION["numLogin"])){
+    if(isset($_SESSION["numLogin"])){
 
-    //     if(isset($_GET["num"])){
+        if(isset($_GET["num"])){
    
-    //         $n1=$_GET["num"];
+            $n1=$_GET["num"];
             
-    //     }else if(isset($_POST["num"])){
+        }else if(isset($_POST["num"])){
             
-    //         $n1=$_POST["num"];
-    //     }
+            $n1=$_POST["num"];
+        }
         
-    //     $n2=$_SESSION["numLogin"];
+        $n2=$_SESSION["numLogin"];
         
-    //     if($n1!=$n2){
-    //         echo "<p>Login não efetuado</p>";
-    //         exit;
-    //     }
-    // }else{
-    //     echo "<p>Esse Login não foi efetuado</p>";
-      
-    //     exit;
-    // }
+        if($n1!=$n2){
+            header("Location: contato.php");
+            exit();
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
 <html lang='pt-br'>
     <head>
-        <title>Goolbee Empregos - HOME</title>
+        <title>Goolbee Empregos - Contato</title>
         <link rel='stylesheet' type='text/css' href='_css/cabecalho.css'>
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/contato.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
         <link rel='stylesheet' type='text/css' href='_css/formulario.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -45,17 +45,30 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
             });
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+         <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
         </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once'cabecalho.php';
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
 
@@ -66,7 +79,7 @@
              
                 <div class='anuncio-principal'>
                     <div class='banner-contato'>
-                    <img src='_imgs/rascunho/baner-contato.png'>
+                        <img src='_imgs/rascunho/baner-contato.png'>
                     </div>
                 
                     <div class='formulario-contato'>
@@ -99,10 +112,20 @@
                 <aside class='lateral'>
                     <!--CONTEUDO LATERAL -->
                     <div class='conteudo-lateral'>
-                        
-                        <h2>Monetização e publicidade</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
-                    
+                        <?php
+                            if(!isset($_SESSION['numLogin'])){
+                                echo "<a href='apCurriculo.php'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }else{
+
+                                echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }
+                        ?>
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
                 </aside>
@@ -127,7 +150,7 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once "config/conx.php";
+                                require_once __DIR__."/config/conx.php";
                                 //Obter dados do formulario
                                 if(isset($_POST['f_submit_email'])){
 
@@ -163,7 +186,7 @@
         <!--FOOTER RODAPE -->    
         <footer>
            
-            <?php require_once "rodape.php";?>
+            <?php require_once __DIR__."/rodape.php";?>
             
         </footer>
     </body>

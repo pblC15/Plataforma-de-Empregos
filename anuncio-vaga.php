@@ -1,25 +1,43 @@
 <?php 
-    require_once 'config/config.php';
-    require_once 'config/conx.php';
- 
-     if(isset($_SESSION["numLogin"])){
- 
-         if(isset($_GET["num"])){
-    
-             $n1=$_GET["num"];
-             
-         }else if(isset($_POST["num"])){
-             
-             $n1=$_POST["num"];
-         }
-         
-         $n2=$_SESSION["numLogin"];
-         
-         if($n1!=$n2){
-             echo "<p>Login não efetuado</p>";
-             exit;
-         }
-     }
+
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    require_once __DIR__.'/config/config.php';
+    require_once __DIR__.'/config/conx.php';
+
+
+    date_default_timezone_set('America/Sao_Paulo');
+
+    $id = $_GET['id'];
+
+    if(isset($_SESSION["numLogin"])){
+
+        if(isset($_GET["num"])){
+
+            $n1=$_GET["num"];
+            
+        }else if(isset($_POST["num"])){
+            
+            $n1=$_POST["num"];
+        }
+        
+        $n2=$_SESSION["numLogin"];
+        
+        if($n1!=$n2){
+            header("Location: anuncio-vaga.php?id=".$id);
+            exit;
+        }
+    }
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+
+        $sql = "SELECT * FROM tb_cadastro WHERE id={$id}";
+                        
+        $result = mysqli_query($conn, $sql);
+
+        $exibe = mysqli_fetch_array($result);
+    }            
 
 ?>
 <!DOCTYPE html>
@@ -30,27 +48,58 @@
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
         <link rel='stylesheet' type='text/css' href='_css/contato.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <meta name='description' content='Goolbee Empregos'>
-        <meta charset='keywords' content='busca de emrpegos, empregos'>
+        <meta charset='keywords' content='busca de emrpegos, empregos, plataforma de empregos, procure empregos'>
         <meta charset='author' content='Pablo Cassiano'>
+        <meta name='description' content='<?php echo ucwords($exibe['nome_V']); ?>'>
+        <meta name="robots" content="index, follow">
+        <meta itemprop="name" content="Goolbee Empregos">
+        <meta itemprop="descriptoin" content="<?php echo ucwords($exibe['nome_V']); ?>">
+        <meta itemprop="image" content="http://goolbeempregos.online/_imgs/rascunho/vagas-emprego.jpg">
+        <meta itemprop="url" content="http://goolbeempregos.online/">
+        <!--FACEBOOK -->
+        <meta property="og:url" content="http://goolbeempregos.online/"/>
+        <meta property="og:image" content="http://goolbeempregos.online/_imgs/rascunho/vagas-emprego.jpg"/>
+        <meta property="og:locale" content="pt_BR"/>
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content='<?php echo ucwords($exibe['nome_V']); ?>'/>
+        <meta property="og:description" content="Nós da GoolbeeEmpregos apenas divulgamos as vagas, não temos vínculo nenhum com o contratante, será de total responsabilidade do candidato a seguir no processo seletivo da vaga.&hellip;"/>
+        <meta property="og:site_name" content="Goolbee Empregos"/>
+        <meta property="article:published_time" content="<?php echo date("d/m/Y H:i");?>" />
+        <meta property="og:image:width" content="550" />
+        <meta property="og:image:height" content="300" />
+
         <script type='text/javascript' src='_js/jquery-3.5.1.min.js'></script>
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
             });
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
         </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once('cabecalho.php');
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
         
@@ -70,6 +119,8 @@
 
                         if($exibe = mysqli_fetch_array($result)){
 
+                            $exibeVaga = $exibe['nome_V'];
+
                             echo "<div class='descricao-vaga'>
                                 
                                     <div class='titulo-vaga'>";
@@ -77,7 +128,7 @@
                                         if(!isset($_SESSION['numLogin'])){
 
                                             echo "<a href='index.php?pagina=1'>HOME</a>><a href='vagas.php?pagina=1'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
-                                            <h3>Vagas para ".ucwords($exibe['nome_V'])."</h3>";
+                                            <h3>Vagas para <span itemprop='name'>".ucwords($exibe['nome_V'])."</span></h3>";
                                             
                                         }else{
 
@@ -129,20 +180,58 @@
                     ?>
                     
                 </div>
-      
+                <div class='div_lateral'>
+                    <aside class='lateral'>
+                    <!--Pesquisa lateral -->
+                        <div class="form-lateral">
+                        <h2>Buscar vagas</h2>
+                        <!--Fazer o back-end -->
+                        <?php 
+
+                            if(!isset($_SESSION['numLogin'])){
+                                
+                                echo "<form action='pesquisa.php' method='get' name='form_pesquisar'>
+                                        <div class='box_pesquisa'>
+                                            <input type='text' name='f_name' placeholder='Busque vagas pelo nome' required='required'>
+                                            <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
+                                        </div>
+                                    </form>";
+                            }else{
+
+                                echo "<form action='pesquisa.php?num=".$_SESSION['numLogin']."' method='POST' name='form_pesquisar'>
+                                        <div class='box_pesquisa'>
+                                            <input type='text' name='f_name' placeholder='Busque vagas pelo nome' required='required'>
+                                            <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
+                                        </div>
+                                    </form>";
+
+                            }
+                        ?>                    
+                        </div><!--Fim da pesquisa lateral -->
+                    </aside>
                 <!--CONTEUDO LATERAL -->
-                <aside class='lateral'>
+                    <aside class='lateral'>
                     <!--CONTEUDO LATERAL -->
-                    <div class='conteudo-lateral'>
-                        
-                        <h2>Monetização e publicidade</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
-                    
-                    </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
+                        <div class='conteudo-lateral'>
+                            <?php
+                                if(!isset($_SESSION['numLogin'])){
+                                    echo "<a href='apCurriculo.php'>
+                                            <h2>Dicas</h2>
+                                            <img src='_imgs/rascunho/curriculo.jpg'>
+                                        </a>";
+                                }else{
 
-                </aside>
+                                    echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                            <h2>Dicas</h2>
+                                            <img src='_imgs/rascunho/curriculo.jpg'>
+                                        </a>";
+                                }
+                            ?>                               
+                        </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
-                <aside class='lateral'>
+                    </aside>
+
+                    <aside class='lateral'>
 
                         <div class="form-lateral">
                             <h2>Receba as vagas de sua preferência</h2>
@@ -164,7 +253,7 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once "config/conx.php";
+                                require_once __DIR__."/config/conx.php";
                                 //Obter dados do formulario
                                 if(isset($_POST['f_submit_email'])){
 
@@ -190,17 +279,14 @@
                                 }
                             ?>
                         </div>
-                </aside>
+                    </aside>
         
                 <div class='clear'></div>
 
             </div><!-- FIM DA DIV CONTRAINER-->
         </section>
-
-        <footer>
-            
-            <?php require_once "rodape.php";?>
-         
+        <footer>        
+            <?php require_once __DIR__."/rodape.php";?>     
         </footer>
     </body>
 

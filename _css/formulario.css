@@ -125,7 +125,7 @@ textarea {
 .formulario input[type=file] {
     display: block;
     width: 100%;
-    margin-top: 10px;
+    margin: 10px;
 }
 
 
@@ -244,6 +244,26 @@ textarea {
         margin: 0 auto;
         width: 100%;
         padding: 20px;
+    }
+    .form-login .login_links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .login_links p:nth-of-type(1) {
+        float: left;
+        width: 100%;
+        flex-basis: 100%;
+        margin-left: 0px;
+    }
+    .login_links p:nth-of-type(2) {
+        float: left;
+        width: 100%;
+        flex-basis: 100%;
+        margin-left: 0px;
+    }
+    footer {
+        margin-top: 50px;
     }
 }
 

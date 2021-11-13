@@ -1,6 +1,6 @@
 <?php 
-    require_once 'config/config.php';
-    require_once 'config/conx.php';
+    require_once __DIR__.'/config/config.php';
+    require_once __DIR__.'/config/conx.php';
 
     if(isset($_SESSION["numLogin"])){
 
@@ -16,11 +16,12 @@
         $n2=$_SESSION["numLogin"];
         
         if($n1!=$n2){
-            echo "<p>Login não efetuado</p>";
-            exit;
+            header("Location: index.php");
+            exit();
         }
     }else{
-        echo "<p>Esse Login não foi efetuado</p>";
+        header("Location: index.php");
+        exit();
       
         exit;
     }
@@ -39,14 +40,12 @@
         $periodo = $_POST['f_periodo'];
         $email = trim($_POST['f_email']);
 
-
         $sql = "INSERT INTO tb_cadastro(nome_V, nome_E, qtd_V, local_T, carga_H, salario_B, tipo_V, requisitos, descricao, periodo_V, email) VALUES('$nomeV', '$empresa', $quantidade, '$local', '$carga', '$salarioB', '$tipoV', '$requisitos', '$descricao', '$periodo', '$email')";
 
         $res = mysqli_query($conn, $sql);
         
         $ret = mysqli_affected_rows($conn);
         
-
         if($ret >= 1){
             
             Header('Location: anuncioSucesso.php?num='.$_SESSION['numLogin']);
@@ -55,7 +54,6 @@
             echo "<p class='mensagemEmail'>Erro ao salvar os dados!</p>";
             
         }
- 
     }
 ?>
 <!DOCTYPE html> 
@@ -78,10 +76,8 @@
         <script>
             $(document).ready(function(){
                 
-                $('.iconMobile').on("click",function(){
-
-                    $('.menuMobileBox').slideDown(500);
-
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
 
                 $(".abreCat").click(function(){
@@ -103,13 +99,27 @@
                 });
                 $(".menuMobileBox li:nth-of-type(5)").css("padding","30px 20px");
             });
+            
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
         </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once('cabecalho.php');
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
 
@@ -173,16 +183,53 @@
                             </form>
                         </div>
                 </div><!--FIM DA DIV ANUNCIAR VAGAS-->
-                
+                <aside class='lateral'>
+
+                <!--Pesquisa lateral -->
+                <div class="form-lateral">
+                    <h2>Buscar vagas</h2>
+                    <!--Fazer o back-end -->
+                    <?php 
+
+                        if(!isset($_SESSION['numLogin'])){
+                            
+                            echo "<form action='pesquisa.php' method='get' name='form_pesquisar'>
+                                    <div class='box_pesquisa'>
+                                        <input type='text' name='f_name' placeholder='Busque vagas pelo nome' required='required'>
+                                        <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
+                                    </div>
+                                 </form>";
+                        }else{
+
+                            echo "<form action='pesquisa.php?num=".$_SESSION['numLogin']."' method='POST' name='form_pesquisar'>
+                                    <div class='box_pesquisa'>
+                                        <input type='text' name='f_name' placeholder='Busque vagas pelo nome' required='required'>
+                                        <button><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30'><path fill-rule='evenodd' d='M14.53 15.59a8.25 8.25 0 111.06-1.06l5.69 5.69a.75.75 0 11-1.06 1.06l-5.69-5.69zM2.5 9.25a6.75 6.75 0 1111.74 4.547.746.746 0 00-.443.442A6.75 6.75 0 012.5 9.25z'></path></svg></button>
+                                    </div>
+                                </form>";
+
+                        }
+                    ?>                    
+                </div><!--Fim da pesquisa lateral -->
+                </aside>
                 <aside class='lateral'>
                     <!--CONTEUDO LATERAL -->
-                    <div class='conteudo-lateral'>
-                        
-                        <h2>Monetização e publicidade</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
-                    
-                    </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
+                    <div class='conteudo-lateral'>                
+                        <?php
+                            if(!isset($_SESSION['numLogin'])){
+                                echo "<a href='apCurriculo.php'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }else{
 
+                                echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }
+                        ?>                   
+                    </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
                 </aside>
                 <aside class='lateral'>
                         <div class="form-lateral">
@@ -205,7 +252,7 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once "config/conx.php";
+                                require_once __DIR__."/config/conx.php";
                                 //Obter dados do formulario
                                 if(isset($_POST['f_submit_email'])){
 
@@ -241,7 +288,7 @@
 
         <footer>
 
-          <?php require_once "rodape.php";?>
+          <?php require_once __DIR__."/rodape.php";?>
         
         </footer>
 

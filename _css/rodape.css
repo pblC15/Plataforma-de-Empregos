@@ -2,6 +2,7 @@ footer {
     position: relative;
     background-color: rgb(44, 43, 43);
     border-top: 3px solid #0077b5;
+    margin-top: 50px;
 }
 
 .footer-side1 .div_seta {
@@ -112,7 +113,7 @@ footer .container {
 .ultimo-footer p {
     margin: 3px auto;
     color: #FFF;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -230,6 +231,6 @@ footer .container {
 
 @media screen and (max-width: 480px) {
     .footer-lateral .img-footer a img {
-        width: 100% !important;
+        width: 82% !important;
     }
 }

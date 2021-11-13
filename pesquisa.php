@@ -1,7 +1,9 @@
 
 <?php 
-    require_once 'config/config.php';
-    require_once 'config/conx.php';
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    require_once __DIR__.'/config/config.php';
+    require_once __DIR__.'/config/conx.php';
 
     if(isset($_SESSION["numLogin"])){
 
@@ -49,12 +51,25 @@
                 });
             });
         </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
+        </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once'cabecalho.php';
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
         
@@ -67,8 +82,8 @@
                 
                 <?php 
 
-                require_once "_function/functionTexto.php";
-                require_once "config/conx.php";
+                require_once __DIR__."/_function/functionTexto.php";
+                require_once __DIR__."/config/conx.php";
 
                     if(isset($_POST['f_name'])){
 
@@ -109,22 +124,44 @@
                     while($exibe = mysqli_fetch_array($result)){
 
                         
+                        if(!isset($_SESSION['numLogin'])){
 
-                        echo "<div class='breve-vaga'>
+                            echo "<div class='breve-vaga'>
                             
                             <div class='img-vaga'>
                             <a href='anuncio-vaga.php?id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
                             </div>
 
                             <div class='desc-vaga'>
-                                <h3>".$exibe['nome_V']."</h3>
+                                <h3><a href='#'>".$exibe['nome_V']."</a></h3>
                                 <p><b>Localidade:</b> ".$exibe['nome_E']."</p>
                                 <p><b>Beneficios:</b>".$exibe['salario_B']."</p>
                                 <p><b>Descrição:</b> ".reduzindoTexto($exibe['descricao'])."...</p>
-                                <a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais...</a>
+                                <p><a href='anuncio-vaga.php?id=".$exibe['id']."'>Ver mais...</a></p>
                             </div>
                             <div class='clear'></div>
-                        </div><!--FIM DA DIV BREVE-VAGA -->";
+                            </div><!--FIM DA DIV BREVE-VAGA -->";
+
+                        }else{
+
+                            echo "<div class='breve-vaga'>
+                            
+                            <div class='img-vaga'>
+                            <a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src='_imgs/rascunho/vagas-emprego.jpg'></a>
+                            </div>
+
+                            <div class='desc-vaga'>
+                                <h3><a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>".$exibe['nome_V']."</a></h3>
+                                <p><b>Localidade:</b> ".$exibe['nome_E']."</p>
+                                <p><b>Beneficios:</b>".$exibe['salario_B']."</p>
+                                <p><b>Descrição:</b> ".reduzindoTexto($exibe['descricao'])."...</p>
+                                <p><a href='anuncio-vaga.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>Ver mais...</a></p>
+                            </div>
+                            <div class='clear'></div>
+                            </div><!--FIM DA DIV BREVE-VAGA -->";
+
+                        }
+                        
 
                     
                     }   
@@ -139,18 +176,34 @@
                     //Arredonadando a quantidade de paginas
                     $qtd_pg = ceil($result['num_result'] / $qtd_item);
 
-                    echo "<a class='pri_pg' href='vagas.php?pagina=1'>Primeira</a>";
-
-
+                    if(!isset($_SESSION['numLogin'])){
+                        echo "<a class='pri_pg' href='pesquisa.php?pagina=1'>Primeira</a>";
+                    }else{
+                        echo "<a class='pri_pg' href='pesquisa.php?num=".$_SESSION['numLogin']."&pagina=1'>Primeira</a>";
+                    }
+                    
                     for($i = 1; $i <= $qtd_pg; $i++){
             
-                            if($i >= 1){
+                        if($qtd_pg > 1){
 
-                            echo "<a class='num_pg' href='vagas.php?pagina=$i'>$i</a>";
-                
+                            if(!isset($_SESSION['numLogin'])){
+
+                                echo "<a class='num_pg' href='pesquisa.php?pagina=$i'>$i</a>";
+
+                            }else{
+
+                                echo "<a class='num_pg' href='pesquisa.php?num=".$_SESSION['numLogin']."&pagina=$i'>$i</a>";
+
+                            }
+            
                         }
                     }
-                    echo "<a class='ult_pg' href='vagas.php?pagina=$qtd_pg'>Último</a>";
+                    if(!isset($_SESSION['numLogin'])){
+                        echo "<a class='ult_pg' href='pesquisa.php?pagina=$qtd_pg'>Último</a>";
+                    }else{
+                        echo "<a class='ult_pg' href='pesquisa.php?num=".$_SESSION['numLogin']."&pagina=$qtd_pg'>Último</a>";
+                    }
+                    
                     echo "</div>";
 
                 ?>
@@ -189,11 +242,21 @@
                     <!--CONTEUDO LATERAL -->
                     <aside class='lateral'>
                         <!--CONTEUDO LATERAL -->
-                        <div class='conteudo-lateral'>
-                            
-                            <h2>Monetização e publicidade</h2>
-                                <img src='_imgs/rascunho/curriculo.jpg'>
-                        
+                        <div class='conteudo-lateral'>    
+                            <?php
+                                if(!isset($_SESSION['numLogin'])){
+                                    echo "<a href='apCurriculo.php'>
+                                            <h2>Dicas</h2>
+                                            <img src='_imgs/rascunho/curriculo.jpg'>
+                                        </a>";
+                                }else{
+
+                                    echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                            <h2>Dicas</h2>
+                                            <img src='_imgs/rascunho/curriculo.jpg'>
+                                        </a>";
+                                }
+                            ?>                         
                         </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
                     </aside>
 
@@ -218,7 +281,7 @@
                                     <input type="submit" name="f_submit_email" value="Enviar">
                                 </form>
                                 <?php 
-                                    require_once "config/conx.php";
+                                    require_once __DIR__."/config/conx.php";
                                     //Obter dados do formulario
                                     if(isset($_POST['f_submit_email'])){
 
@@ -255,7 +318,7 @@
 
         <footer>
             
-          <?php require_once "rodape.php"?>
+          <?php require_once __DIR__."/rodape.php"?>
            
         </footer>
     </body>

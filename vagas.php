@@ -16,12 +16,10 @@
         $n2=$_SESSION["numLogin"];
         
         if($n1!=$n2){
-            echo "<p>Login não efetuado</p>";
+            header("Location: vagas.php");
             exit;
         }
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang='pt-br'>
@@ -31,6 +29,7 @@
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
         <link rel='stylesheet' type='text/css' href='_css/contato.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -41,17 +40,30 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
             });
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
         </script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once'cabecalho.php';
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
         
@@ -194,7 +206,7 @@
                         }
                         echo "<div class='paginacao'>";
                         //Contando quantos resultados tem na tabela
-                        $result_pg = "SELECT COUNT(id) AS num_result FROM tb_cadastro WHERE tipo_V = 'Emprego'";
+                        $result_pg = "SELECT COUNT(id) AS num_result FROM tb_cadastro WHERE tipo_V = 'Emprego' LIMIT 8";
                         //Executando a query
                         $query = mysqli_query($conn, $result_pg);
                         //Transformando em array
@@ -260,10 +272,10 @@
                 <aside class='lateral'>
                     <!--CONTEUDO LATERAL -->
                     <div class='conteudo-lateral'>
-                        
-                        <h2>Monetização e publicidade</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
-                    
+                        <a href="apCurriculo.php">
+                        <h2>Dicas</h2>
+                        <img src='_imgs/rascunho/curriculo.jpg'>
+                        </a>
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
                 </aside>
                 <aside class='lateral'>

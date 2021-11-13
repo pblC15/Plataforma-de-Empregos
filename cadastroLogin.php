@@ -1,49 +1,3 @@
-<?php 
-  require_once "Config/conx.php";
-                            
-
-  //Obter dados do formulario
-  if(isset($_POST['f_submit'])){
-
-    $nome = trim(filter_var($_POST['f_user'], FILTER_SANITIZE_STRING));
-    $sobreNome = trim(filter_var($_POST['f_sobreNome'], FILTER_SANITIZE_STRING));
-    $password = trim($_POST['f_passwrd'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = trim(filter_var($_POST['f_email_user']), FILTER_VALIDATE_EMAIL);
-
-    if(!empty($email)){
-
-        $sql = "SELECT * FROM tb_usuario WHERE email_user = {$email}";
-
-        $res = mysqli_query($conn, $sql);
-        $ret = mysqli_affected_rows($conn);
-        // $ret = mysqli_fetch_array($res);
-
-        if($ret > 0){
-
-            Header('Location: cadastro_login.php?sucess=error');
-
-        }else {
-        
-            $sql = "INSERT INTO tb_usuario(nome_user, sobre_nome, password_user, email_user, acesso) VALUES('{$nome}', '{$sobreNome}', '{$password}', '{$email}', 1)";
-
-            $res = mysqli_query($conn, $sql);
-            $ret = mysqli_affected_rows($conn);
-
-            if($ret >= 1){
-
-                Header('Location: login_g.php?sucess=accept');
-            
-
-            }else {
-                echo "<p class='mensagemEmail'>Login não cadastrado!</p>";
-            }
-        }
-    }
-
-  }
-  
-?>
-
 <!DOCTYPE html> 
 <html lang='pt-br'>
 <head>
@@ -53,6 +7,7 @@
     <link rel='stylesheet' type='text/css' href='_css/formulario.css'>
     <link rel='stylesheet' type='text/css' href='_css/anunciar.css'>
     <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
+    <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
     <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'> 
     <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">   
@@ -63,11 +18,24 @@
     <script>
         $(document).ready(function(){
             
-            $('#idmenu-mobile').click(function(){
-                $('#idmenu-mobile ul').toggle();
+            $('.menu-mobile').on("click",function(){
+                $('.menu-mobile .menuMobileBox').slideToggle(500);
             });
         });
     </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-188173005-1');
+    </script>
+    <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
 </head>
 <body>
     <!--Cabeçalho principal -->
@@ -86,7 +54,7 @@
                 <h2>Faça seu Cadastro</h2>
                     
                     <div class='formulario form-cadastro-login'>
-                        <form action='cadastro_login.php' method='post'>
+                        <form action='source/functions/cadastroLoginExc.php' method='post'>
 
                             <label for='id_user'>Nome:</label>
                             <input type='text' name='f_user' id='id_user' required='required'>
@@ -111,13 +79,22 @@
             
             <aside class='lateral'>
                 <!--CONTEUDO LATERAL -->
-                <div class='conteudo-lateral'>
-                    
-                    <h2>Monetização e publicidade</h2>
-                        <img src='_imgs/rascunho/curriculo.jpg'>
-                
-                </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
+                <div class='conteudo-lateral'> 
+                    <?php
+                        if(!isset($_SESSION['numLogin'])){
+                            echo "<a href='apCurriculo.php'>
+                                    <h2>Dicas</h2>
+                                    <img src='_imgs/rascunho/curriculo.jpg'>
+                                    </a>";
+                        }else{
 
+                            echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                    <h2>Dicas</h2>
+                                    <img src='_imgs/rascunho/curriculo.jpg'>
+                                    </a>";
+                        }
+                    ?>          
+                </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
             </aside>
             <aside class='lateral'>
                     <div class="form-lateral">
@@ -149,22 +126,23 @@
 
     <footer>
 
-        <?php require_once "rodape.php";?>
+        <?php require_once __DIR__."/rodape.php";?>
     
     </footer>
 <?php
 
-    if($_GET['sucess'] === 'error'){
-        echo "
-        <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    if(isset($_GET['sucess']) == 'error'){
+        echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
         <script>
-        Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'O email já existe, favor tente novamente!'
-        });
-        </script>
-        ";
+        swal('Error', 'O email já existe, favor tente novamente!', 'error');
+        </script>";
+    }
+
+    if(isset($_GET['errorU']) == 'errorU'){
+        echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+        <script>
+        swal('Error', 'Não foi possível resetar senha!', 'error');
+        </script>";
     }
 
 

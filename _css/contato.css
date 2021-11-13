@@ -1,32 +1,42 @@
-@font-face{
+@font-face {
     font-family: 'Open Sans-Regular';
     src: url('../_fonts/Open_Sans/OpenSans-Normal.ttf');
 }
-.banner-contato, .banner-contato-1{
+
+.banner-contato,
+.banner-contato-1 {
     position: relative;
     display: inline-block;
     width: 100%;
 }
 
-.banner-contato img{
+.banner-contato img {
     width: 100%;
     height: auto;
 }
-.banner-contato-1 img{
+
+.banner-contato-1 img {
     display: none;
     width: 100%;
     height: auto;
 }
-.formulario-contato .mensagem{
+
+.banner-contato-2 img {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+.formulario-contato .mensagem {
     border: 3px solid #2f98d1;
     padding: 10px;
     border-radius: 10px;
     margin: 20px 0;
     font-family: 'Open Sans-Regular';
 }
-.formulario-contato1 label:nth-of-type(3){
+
+.formulario-contato1 label:nth-of-type(3) {
     float: left;
     width: 100px;
     position: relative;
 }
-

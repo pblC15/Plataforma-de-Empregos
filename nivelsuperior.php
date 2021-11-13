@@ -16,7 +16,7 @@
         $n2=$_SESSION["numLogin"];
         
         if($n1!=$n2){
-            echo "<p>Login não efetuado</p>";
+            header("Location: nivelsuperior.php");
             exit;
         }
     }
@@ -30,6 +30,7 @@
         <link rel='stylesheet' type='text/css' href='_css/conteudo.css'>
         <link rel='stylesheet' type='text/css' href='_css/rodape.css'>
         <link rel='stylesheet' type='text/css' href='_css/contato.css'>
+        <link rel='stylesheet' type='text/css' href='_css/fonticon.css'>
         <link rel='shortcut icon' type='image-x/png' href='_imgs/icone/icone-6.png'>  
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -40,17 +41,30 @@
         <script>
             $(document).ready(function(){
                 
-                $('#idmenu-mobile').click(function(){
-                    $('#idmenu-mobile ul').toggle();
+                $('.menu-mobile').on("click",function(){
+                    $('.menu-mobile .menuMobileBox').slideToggle(500);
                 });
             });
         </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-188173005-1');
+        </script>
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
+        crossorigin="anonymous"></script>
     </head>
     <body>
         <!--Cabeçalho principal -->
         <header class='cabecalho-principal'>
            <?php 
-                require_once'cabecalho.php';
+                require_once __DIR__.'/cabecalho.php';
            ?>
         </header>
         
@@ -220,7 +234,11 @@
                     
                             }
                         }
-                        echo "<a class='ult_pg' href='nivelsuperior.php?pagina=$qtd_pg'>Último</a>";
+                        if(!isset($_SESSION['numLogin'])){
+                            echo "<a class='ult_pg' href='nivelsuperior.php?pagina=$qtd_pg'>Último</a>";
+                        }else{
+                            echo "<a class='ult_pg' href='nivelsuperior.php?num=".$_SESSION['numLogin']."&pagina=$qtd_pg'>Último</a>";
+                        }
                         echo "</div>";
 
                     ?>
@@ -257,11 +275,21 @@
                 <!--CONTEUDO LATERAL -->
                 <aside class='lateral'>
                     <!--CONTEUDO LATERAL -->
-                    <div class='conteudo-lateral'>
-                        
-                        <h2>Monetização e publicidade</h2>
-                            <img src='_imgs/rascunho/curriculo.jpg'>
-                    
+                    <div class='conteudo-lateral'>                  
+                        <?php
+                            if(!isset($_SESSION['numLogin'])){
+                                echo "<a href='apCurriculo.php'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }else{
+
+                                echo "<a href='apCurriculo.php?num=".$_SESSION['numLogin']."'>
+                                        <h2>Dicas</h2>
+                                        <img src='_imgs/rascunho/curriculo.jpg'>
+                                      </a>";
+                            }
+                        ?>             
                     </div><!--FIM DA ASIDE CONTEUDO LATERAL -->
 
                 </aside>
@@ -282,7 +310,6 @@
                                     <option value="Nivel_superior">Nivél Superior</option>
                                     <option value="Diaria">Diaria</option>
                                 </select>
-
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
@@ -312,13 +339,10 @@
                                 }
                             ?>
                         </div>
-                </aside>
-                        
+                </aside>                   
                 <div class='clear'></div>
-
             </div><!-- FIM DA DIV CONTRAINER-->
         </section>
-
         <footer>
    
           <?php require_once "rodape.php";?>
