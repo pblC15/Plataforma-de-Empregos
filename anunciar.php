@@ -71,48 +71,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">   
         <meta name='description' content='Goolbee Empregos'>
         <meta charset='keywords' content='busca de emrpegos, empregos'>
-        <meta charset='author' content='Pablo Cassiano'>
-        <script type='text/javascript' src='_js/jquery-3.5.1.min.js'></script>
-        <script>
-            $(document).ready(function(){
-                
-                $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
-                });
-
-                $(".abreCat").click(function(){
-                        $(".subMenuMobile").slideToggle(500, function(){
-                            $(".menuMobileBox li:nth-of-type(5)").css("padding-bottom","0px");
-
-                                var icone = $(".abreCat").parent().get();
-                                $(icone).attr("class", "icon-menu4"); 
-                                if(!$(".subMenuMobile").is(":visible")){
-                            
-                            var icone = $(".abreCat").parent().get();
-                            $(icone).attr("class", "icon-menu3"); 
-                            console.log($(this));
-                        }
-                        
-                        });
-                        
-                        
-                });
-                $(".menuMobileBox li:nth-of-type(5)").css("padding","30px 20px");
-            });
-            
-        </script>
-        <!--Google Adsens-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
-        crossorigin="anonymous"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
-        </script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+        <meta charset='author' content='Pablo Cassiano'>      
         
-          gtag('config', 'UA-188173005-1');
+        <!--Google Adsens-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4577421833675509"
+        crossorigin="anonymous">
         </script>
     </head>
     <body>
@@ -133,12 +96,12 @@
 
                         <div class='text-alert'>
                             <p>Anuncie sua vaga de emprego no maior portal de emprego do Brasil. Aqui você poderá anunciar sua vaga preenchendo o formulário a baixo com as informações da vaga como, nome da vaga, tipo, carga horária, email, período etc.</p>
-                            <p>Nós da <i>GoolbeeEmpregos</i> deixamos claro que não temos nenhum vínculo contratual com o empregador e não nos responsabilizamos pelo candidato. Nosso proposito é apenas a divulgação da vaga, disponibilizando-a para o máximo possível de pessoas.</p>
+                            <p>Nós da <i>GoolbeEmpregos</i> deixamos claro que não temos nenhum vínculo contratual com o empregador e não nos responsabilizamos pelo candidato. Nosso proposito é apenas a divulgação da vaga, disponibilizando-a para o máximo possível de pessoas.</p>
                             <p><b>Campos em * são obrigatórios</p>
                         </div><!--FIM DA DIV TEXT-ALERT -->  
                         
                         <div class='formulario'>
-                            <form action='anunciar.php?num=<?php echo $_SESSION['numLogin'] ?>' method='post'>
+                            <form action='anunciar.php?num=<?php echo $_SESSION['numLogin'] ?>' method='post' class='formAnuncio'>
                                 
                                 <label for='id_nomeV'>Nome Vaga*</label><input type='text' name='f_nomeV' id='id_nomV' placeholder='Ex: Auxiliar de Cozinha, Repositor' required='required'>
 
@@ -187,7 +150,6 @@
 
                 <!--Pesquisa lateral -->
                 <div class="form-lateral">
-                    <h2>Buscar vagas</h2>
                     <!--Fazer o back-end -->
                     <?php 
 
@@ -291,6 +253,46 @@
           <?php require_once __DIR__."/rodape.php";?>
         
         </footer>
+        <script type='text/javascript' src='_js/jquery-3.5.1.min.js'></script>
+        <script type='text/javascript' src='_js/jquery.mask.js'></script>
+        <script type="text/javascript">
+            //Transformar as entradas do formulario em minúsculas
+            $(function(){
+                $('.formAnuncio > input').change(function(){
+                    $(this).val($(this).val().toLowerCase());
+                });
+            });
+            
 
+        </script>
+        <script>
+            $(document).ready(function(){
+                
+                $('.menu-mobile').on("click",function(){
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+                });
+
+                //Abrir categoria
+                $(".abreCat").click(function(){
+                    $(".subMenuMobile").slideToggle(500, function(){
+                        $(".menuMobileBox li:nth-of-type(5)").css("padding-bottom","0px");
+
+                            var icone = $(".abreCat").parent().get();
+                            $(icone).attr("class", "icon-menu4"); 
+                            if(!$(".subMenuMobile").is(":visible")){
+                        
+                        var icone = $(".abreCat").parent().get();
+                        $(icone).attr("class", "icon-menu3"); 
+                        console.log($(this));
+                    }
+                    
+                    });
+                        
+                });
+                $(".menuMobileBox li:nth-of-type(5)").css("padding","30px 20px");
+            });
+            
+        </script>
     </body>
 </html>

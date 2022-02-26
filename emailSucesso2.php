@@ -24,13 +24,16 @@ session_start();
             $(document).ready(function(){
                 
                 $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+
                 });
             });
         </script>
         <!--Google Adsens-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
-        crossorigin="anonymous"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4577421833675509"
+        crossorigin="anonymous">
+        </script>
          <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
         </script>
@@ -98,7 +101,6 @@ session_start();
                     <div class='conteudo-lateral'>
                         
                         <div class="form-lateral">
-                            <h2>Buscar vagas</h2>
                             <!--Fazer o back-end -->
                                 <form action="pesquisa.php" method="get" name='form_pesquisar'>
                                     <div class="box_pesquisa">

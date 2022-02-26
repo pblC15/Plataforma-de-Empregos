@@ -61,10 +61,9 @@
                             <li class='icon-user-tie'><a href='nivelsuperior?num=".$_SESSION['numLogin']."&pagina=1'>NIVEL SUPERIOR</a></li>
                             <li class='icon-user-check'><a href='estagio.php?num=".$_SESSION['numLogin']."&pagina=1'>ESTÁGIO</a></li>
                             <li class='icon-phone'><a href='apCurriculo.php?num=".$_SESSION['numLogin']."&pagina=1'>CURRICULO</a></li>
-                            <li class='icon-phone'><a href='cursos.php?num=".$_SESSION['numLogin']."&pagina=1'>CURSOS</a></li>
                         </ul></li>
                     <li class='icon-newspaper'><a href='noticias.php?num=".$_SESSION['numLogin']."'>NOTICIAS</a></li>
-                    <li class='icon-exit'><a href='logOut.php?token=".md5(session_id())."'>SAIR</a></li>";
+                    <li class='icon-exit'><a href='source/functions/logOut.php?token=".md5(session_id())."'>SAIR</a></li>";
 
                 }
             ?>
@@ -177,6 +176,9 @@
 <script>
    $(function(){
 
+    $('.abreCat').on('click',function(){
+        $('.subMenuMobile').fadeToggle(500);
+    });
         
    });
 </script>

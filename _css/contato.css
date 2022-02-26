@@ -40,3 +40,9 @@
     width: 100px;
     position: relative;
 }
+
+@media screen and (max-width:500px) {
+    .formulario-contato .mensagem {
+        text-align: justify;
+    }
+}

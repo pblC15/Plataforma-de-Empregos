@@ -5,7 +5,6 @@
     require_once __DIR__.'/config/config.php';
     require_once __DIR__.'/config/conx.php';
 
-
     date_default_timezone_set('America/Sao_Paulo');
 
     $id = $_GET['id'];
@@ -77,22 +76,15 @@
             $(document).ready(function(){
                 
                 $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+
                 });
             });
         </script>
         <!--Google Adsens-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
-        crossorigin="anonymous"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
-        </script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'UA-188173005-1');
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4577421833675509"
+        crossorigin="anonymous">
         </script>
     </head>
     <body>
@@ -127,13 +119,13 @@
 
                                         if(!isset($_SESSION['numLogin'])){
 
-                                            echo "<a href='index.php?pagina=1'>HOME</a>><a href='vagas.php?pagina=1'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
+                                            echo "<a href='index.php?pagina=1'>Home</a>><a href='vagas.php?pagina=1'>Vagas</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
                                             <h3>Vagas para <span itemprop='name'>".ucwords($exibe['nome_V'])."</span></h3>";
                                             
                                         }else{
 
                                             
-                                            echo "<a href='index.php?num=".$_SESSION['numLogin']."&pagina=1'>HOME</a>><a href='vagas.php?num=".$_SESSION['numLogin']."&pagina=1'>".strtoupper(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
+                                            echo "<a href='index.php?num=".$_SESSION['numLogin']."&pagina=1'>Home</a>><a href='vagas.php?num=".$_SESSION['numLogin']."&pagina=1'>".ucwords(str_replace("_"," ",$exibe['tipo_V']))."</a>><a href='#'>".ucwords($exibe['nome_V'])."</a>
                                             <h3>Vagas para ".ucwords($exibe['nome_V'])."</h3>";
                                         }
                                         
@@ -155,7 +147,7 @@
                                         <p><b>Quantidade de vagas: </b><span class='dados'> ".$exibe['qtd_V']."</span></p>
                                         <p><b>Localidade:</b> <span class='dados'>".ucwords($exibe['local_T'])."</span></p>
                                         <p><b>Carga Horária: </b> <span class='dados'>".$exibe['carga_H']."</span></p>
-                                        <p><b>Sálario e Beneficios:</b><span class='dados'>".$exibe['salario_B']."</span></p>
+                                        <p><b>Sálario e Beneficios:</b><span class='dados'>".ucwords($exibe['salario_B'])."</span></p>
                                         <p><b>Tipo de Vaga: </b><span class='dados'>".str_replace("_"," ",$exibe['tipo_V'])."</span></p>
                                         <p class='requisitos'><b>Requisitos: </b><span class='dados'> ".$exibe['requisitos']."<span></p>
                                         <p class='desc'><b>Descrição:</b> <span class='dados'>".$exibe['descricao']."</span></p>
@@ -184,7 +176,6 @@
                     <aside class='lateral'>
                     <!--Pesquisa lateral -->
                         <div class="form-lateral">
-                        <h2>Buscar vagas</h2>
                         <!--Fazer o back-end -->
                         <?php 
 
@@ -288,6 +279,7 @@
         <footer>        
             <?php require_once __DIR__."/rodape.php";?>     
         </footer>
+
     </body>
 
     <script>

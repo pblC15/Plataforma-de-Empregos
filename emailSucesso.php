@@ -24,7 +24,9 @@ session_start();
             $(document).ready(function(){
                 
                 $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+
                 });
             });
         </script>

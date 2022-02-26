@@ -42,13 +42,16 @@
             $(document).ready(function(){
                 
                 $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+
                 });
             });
         </script>
         <!--Google Adsens-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
-        crossorigin="anonymous"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4577421833675509"
+        crossorigin="anonymous">
+        </script>
          <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
         </script>
@@ -80,16 +83,24 @@
                     </div>
 
                     <h2>Vagas de Estágio</h2>
-                    
+                    <div class="wrap-title"></div>
+
                     <?php 
+                    //INICIO PAGINAÇÃO E EXIBIÇÃO DOS ANUNCIOS
+
+                    require_once __DIR__."/config/conx.php";
+                    require_once __DIR__."/_function/functionTexto.php";
+
+                    define('RANGE_PAGINAS', 1);
+
                     //Obtendo a pagina vinda da URL
-                    $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
+                    $pagina_atual = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
                     //Se tiver vazia seta o 1
                     $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
                     //Quantidade de itens
                     $qtd_item = 5;
 
-                    $inicio = ($qtd_item * $pagina) - $qtd_item;
+                    $inicio = ($pagina -1) * $qtd_item;
 
                     $sql = "SELECT * FROM tb_cadastro WHERE tipo_V = 'Estagio' LIMIT $inicio, $qtd_item";
                     
@@ -210,35 +221,69 @@
                     //Transformando em array
                     $result = mysqli_fetch_assoc($query);
 
+                    /* Idêntifica a primeira página */  
+                    $primeira_pagina = 1; 
+
                     //Arredonadando a quantidade de paginas
                     $qtd_pg = ceil($result['num_result'] / $qtd_item);
 
-                    echo "<a class='pri_pg' href='estagio.php?pagina=1'>Primeira</a>";
 
+                    /*Cálcula qual será a página anterior em relação a página atual em exibição*/
+                    $pag_ant = ($pagina > 1) ? $pagina -1 : 0;
 
-                    for($i = 1; $i <= $qtd_pg; $i++){
-            
-                         if($i >= 1){
+                    /*Cálcula qual será a pŕoxima página em relação a página atual em exibição*/
+                    $pag_prox = ($pagina < $qtd_pg) ? $pagina +1 : 0;
 
-                            if(!isset($_SESSION['numLogin'])){
-                                    
-                                echo "<a class='num_pg' href='estagio.php?pagina=$i'>$i</a>";
-                                
-                            }else{
-            
-                                echo "<a class='num_pg' href='estagio.php?num=".$_SESSION['numLogin']."&pagina=$i'>$i</a>";
-            
-                            }
-                
-                        }
-                    }
+                    /* Cálcula qual será a página inicial do nosso range */    
+                    $range_inicial = (($pagina - RANGE_PAGINAS) >= 1) ? $pagina - RANGE_PAGINAS : 1 ;   
+                    
+                    /* Cálcula qual será a página final do nosso range */    
+                    $range_final = (($pagina + RANGE_PAGINAS) <= $qtd_pg ) ? $pagina + RANGE_PAGINAS : $qtd_pg;  
+
+                     /* Verifica se vai exibir o botão "Primeiro" e "Pŕoximo" */   
+                    $exibir_botao_inicio = ($range_inicial < $pagina) ? 'mostrar' : 'esconder'; 
+   
+                    /* Verifica se vai exibir o botão "Anterior" e "Último" */   
+                    $exibir_botao_final = ($range_final > $pagina) ? 'mostrar' : 'esconder';  
+
                     if(!isset($_SESSION['numLogin'])){
-                                    
-                        echo "<a class='ult_pg' href='estagio.php?pagina=$qtd_pg'>Último</a>";
-                        
+                     
+                        echo " <a class='$exibir_botao_inicio' href='estagio.php?page=$primeira_pagina' title='Primeira Página'>Primeira</a>    
+                        <a class='$exibir_botao_inicio' href='estagio.php?page=$pag_ant' title='Página Anterior'>Anterior</a>";
                     }else{
+                       
+                        echo "<a class='$exibir_botao_inicio' href='estagio.php?num=".$_SESSION['numLogin']."&page=$primeira_pagina' title='Primeira Página'>Primeira</a>    
+                        <a class='$exibir_botao_inicio' href='estagio.php?num=".$_SESSION['numLogin']."&page=$pag_ant' title='Página Anterior'>Anterior</a>";
+                    }
+
+
+                    //Realizar Looping
+                    /* Loop para montar a páginação central com os números */   
+                    for ($i=$range_inicial; $i <= $range_final; $i++){
+
+                        $destaque = ($i == $pagina) ? 'destaque' : ' ' ;  
+                        
+                        if(!isset($_SESSION['numLogin'])){
+                       
+                            echo "<a class='num_pg $destaque' href='estagio.php?page=$i'>$i</a>";
+                        
+                        }else{
     
-                        echo "<a class='ult_pg' href='estagio.php?num=".$_SESSION['numLogin']."&pagina=$qtd_pg'>Último</a>";
+                            echo "<a class='num_pg $destaque' href='estagio.php?num=".$_SESSION['numLogin']."&page=$i'>$i</a>";
+                        }
+ 
+                    }
+
+                    if(!isset($_SESSION['numLogin'])){
+                       
+                        echo " <a class='$exibir_botao_final' href='estagio.php?page=$pag_prox' title='Próxima Página'>Próxima</a>    
+                        <a class='$exibir_botao_final' href='estagio.php?page=$qtd_pg' title='Última Página'>Último</a>";
+                    
+                    }else{
+
+                        echo " <a class='$exibir_botao_final' href='estagio.php?num=".$_SESSION['numLogin']."&page=$pag_prox' title='Próxima Página'>Próxima</a>    
+                        <a class='$exibir_botao_final' href='estagio.php?num=".$_SESSION['numLogin']."&page=$qtd_pg' title='Última Página'>Último</a>";
+                 
                     }
                     
                     echo "</div>";
@@ -251,7 +296,6 @@
                 <aside class='lateral'>
                     <!--Pesquisa lateral -->
                     <div class="form-lateral">
-                    <h2>Buscar vagas</h2>
                     <!--Fazer o back-end -->
                     <?php 
 

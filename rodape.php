@@ -94,7 +94,7 @@
 </div>
 <div class="ultimo-footer">
     <p>Desenvolvido por Pablo Cassiano</p>
-    <p>&copy; 2020 - Todos os direitos autorais reservados a <b>GoolbeeEmpregos</b></p>
+    <p>&copy; 2020 - Todos os direitos autorais reservados a <b>GoolbeEmpregos</b></p>
     <div class="clear"></div>
 </div>
 

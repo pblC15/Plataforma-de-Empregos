@@ -47,22 +47,15 @@
             $(document).ready(function(){
                 
                 $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+
                 });
             });
         </script>
         <!--Google Adsens-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
-        crossorigin="anonymous"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
-        </script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'UA-188173005-1');
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4577421833675509"
+        crossorigin="anonymous">
         </script>
     </head>
     <body>
@@ -80,7 +73,7 @@
              
                 <div class='anuncio-principal'>
                     <div class='titulo-vaga'>
-                    <a href='index.php?pagina=1'>HOME</a>><a href='apCurriculo.php'>CURRÍCULO</a>
+                    <a href='index.php?pagina=1'>Home</a>><a href='apCurriculo.php'>Currículo</a>
                     </div>
                     
                     <h1 class='tituloCurriculo'>Aprenda a fazer seu currículo e ter mais chances de ser selecionando</h1>

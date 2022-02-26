@@ -149,13 +149,37 @@ section.conteudo .breve-vaga1 {
     color: white;
 }
 
+.wrap-title {
+    width: 20%;
+    height: 3px;
+    background-color: rgb(130, 130, 130);
+    margin: 0 auto;
+    position: relative;
+    top: -15px;
+}
+
 
 /**********PAGINACÃO**********/
+
+
+/*Configuração botão paginação*/
+
+.mostrar {
+    display: inline-block;
+    background-color: rgb(44, 43, 43);
+    margin: 6px 0px;
+    padding: 0px 13px;
+    border-radius: 4px;
+}
+
+.esconder {
+    display: none;
+}
 
 .paginacao {
     display: inline-block;
     width: 100%;
-    height: 45px;
+    /* height: 45px; */
     margin-top: 10px;
     margin-bottom: 30px;
     border: 0;
@@ -174,7 +198,7 @@ section.conteudo .breve-vaga1 {
     background-color: #ccc;
     color: black;
     padding: 5px 10px;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 .paginacao .pri_pg {
@@ -193,12 +217,17 @@ section.conteudo .breve-vaga1 {
     font-size: 18px;
 }
 
+.destaque {
+    background-color: rgb(46, 46, 46) !important;
+    color: #fff !important;
+}
+
 
 /*****************ANUNCIO-VAGA**************/
 
 .anuncio-principal .descricao-vaga {
     width: 100%;
-    padding: 50px 10px;
+    padding: 0px 10px 50px;
 }
 
 .anuncio-principal .titulo-vaga {
@@ -408,7 +437,7 @@ aside.lateral {
     border: 1px solid #ccc;
     box-shadow: 1px 1px 10px #ccc;
     text-align: center;
-    margin: 10px 0;
+    margin: 8px 0 -3px 0;
 }
 
 
@@ -426,15 +455,16 @@ aside.lateral {
 aside .conteudo-lateral h2 {
     display: inline-block;
     width: 100%;
-    background: linear-gradient(to bottom, #0066ff 10%, #3399ff 68%);
+    background: #2f98d1;
     color: white;
     padding: 10px;
     font-size: 15px;
+    font-weight: 300;
 }
 
 aside .conteudo-lateral img {
     width: 100%;
-    height: 200px;
+    height: 230px;
 }
 
 
@@ -503,13 +533,14 @@ td {
 
 .form-lateral h2 {
     font-size: 15px;
-    background: linear-gradient(to bottom, #0066ff 10%, #3399ff 68%);
+    background: #2f98d1;
     color: white;
-    padding: 10px 0;
+    padding: 5px 0;
+    font-weight: 400;
 }
 
 .form-lateral form {
-    padding: 10px 2%;
+    padding: 0px 2%;
     text-align: center;
 }
 
@@ -540,10 +571,11 @@ td {
     border: 1px solid #ccc;
     width: 80%;
     margin-right: 10px;
+    margin-bottom: 8px;
     outline: 0;
-    height: 35px;
+    height: 31px;
     padding-left: 8px;
-    font-size: 16px;
+    font-size: 13px;
     outline: 0;
 }
 
@@ -632,9 +664,14 @@ td {
     }
     .data-icone {
         width: 65%;
+        float: none;
+        margin: 0 auto;
     }
     .tipo-icone {
         width: 65%;
+        float: none;
+        margin: 0 auto;
+        padding: 7px;
     }
     .breve-vaga1 .desc-vaga {
         padding: 5px;
@@ -657,6 +694,18 @@ td {
     }
     footer {
         margin-top: 50px;
+    }
+    .breve-vaga .desc-vaga p a {
+        padding: 10px;
+        font-size: 1em;
+        text-align: center;
+    }
+    .anuncio-principal .descricao-vaga {
+        width: 100%;
+        padding: 10px 0px;
+    }
+    .anuncio-principal .titulo-vaga {
+        margin: 5px 5px 20px;
     }
 }
 

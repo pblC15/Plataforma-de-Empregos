@@ -43,14 +43,17 @@
             $(document).ready(function(){
                 
                 $('.menu-mobile').on("click",function(){
-                    $('.menu-mobile .menuMobileBox').slideToggle(500);
+                    $('.menuMobileBox').slideDown(500);
+                    $('.menuMobileBox').addClass("visible");
+
                 });
             
             });
         </script>
         <!--Google Adsens-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468802787882377"
-        crossorigin="anonymous"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4577421833675509"
+        crossorigin="anonymous">
+        </script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188173005-1">
         </script>
@@ -82,105 +85,142 @@
                     </div>
 
                     <h2>Noticias mais Recentes</h2>
+                    <div class="wrap-title"></div>
                     
                     <?php 
-                        require_once __DIR__."/config/conx.php";
-                        require_once __DIR__."/_function/functionTexto.php";
-                        //Obtendo a pagina vinda da URL
-                        $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
-                        //Se tiver vazia seta o 1
-                        $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
-                        //Quantidade de itens
-                        $qtd_item = 5;
-
-                        $inicio = ($qtd_item * $pagina) - $qtd_item;
-                        
-                        $sql = "SELECT * FROM tb_noticias ORDER BY data_p DESC LIMIT $inicio, $qtd_item";
-                        
-                        $result = mysqli_query($conn, $sql);
-
-                        while($exibe = mysqli_fetch_array($result)){
-
-                            if(!isset($_SESSION['numLogin'])){
-                                
-                                echo "<div class='breve-vaga1'>";
-
-                                    echo "
-                                    <div class='img-vaga'>
-
-                                        <a href='noticia-em-destaque.php?id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
-
-                                    </div>
-                                    <div class='desc-vaga'>
-                                        <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
-                                        <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
-                                        <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
-                                        <p><a href='noticia-em-destaque.php?id=".$exibe['id']."'>Ver mais</a></p>
-                                    </div>
-                                    <div class='clear'></div>
-                                </div><!--FIM DA DIV BREVE-VAGA -->";
-
-                            }else{
-
-                                echo "<div class='breve-vaga1'>";
-
-                                    echo "
-                                    <div class='img-vaga'>
-                                        <a href='noticia-em-destaque.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
-
-                                    </div>
-                                    <div class='desc-vaga'>
-                                        <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
-                                        <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
-                                        <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
-                                        <p><a href='noticia-em-destaque.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>Ver mais</a></p>
-                                    </div>
-                                    <div class='clear'></div>
-                                </div><!--FIM DA DIV BREVE-VAGA -->";
-
-                            }
-                        }
-                        echo "<div class='paginacao'>";
-                        //Contando quantos resultados tem na tabela
-                        $result_pg = "SELECT COUNT(id) AS num_result FROM tb_noticias";
-                        //Executando a query
-                        $query = mysqli_query($conn, $result_pg);
-                        //Transformando em array
-                        $result = mysqli_fetch_assoc($query);
-
-                        //Arredonadando a quantidade de paginas
-                        $qtd_pg = ceil($result['num_result'] / $qtd_item);
-
-                        echo "<a class='pri_pg' href='noticias.php?pagina=1'>Primeira</a>";
-                        if(!isset($_SESSION['numLogin'])){
-                            echo "<a class='pri_pg' href='noticias.php?pagina=1'>Primeira</a>";
-                        }else{
-                            echo "<a class='pri_pg' href='noticias.php?num=".$_SESSION['numLogin']."pagina=1'>Primeira</a>";
-                        }
-
-                        for($i = 1; $i <= $qtd_pg; $i++){
-                
-                             if($i >= 1){
-
-                                if(!isset($_SESSION['numLogin'])){
-                                    
-                                    echo "<a class='num_pg' href='noticias.php?pagina=$i'>$i</a>";
-                                    
-                                }else{
-                
-                                    echo "<a class='num_pg' href='noticias.php?num=".$_SESSION['numLogin']."&pagina=$i'>$i</a>";
-                
-                                }
+                    //INICIO PAGINAÇÃO E EXIBIÇÃO DOS ANUNCIOS
                     
-                            }
-                        }
+                    require_once __DIR__."/config/conx.php";
+                    require_once __DIR__."/_function/functionTexto.php";
+    
+                    define('RANGE_PAGINAS', 1);
+    
+                    //Obtendo a pagina vinda da URL
+                    $pagina_atual = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+                    //Se tiver vazia seta o 1
+                    $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
+                    //Quantidade de itens
+                    $qtd_item = 5;
+    
+                    $inicio = ($pagina -1) * $qtd_item;
+                    
+                    $sql = "SELECT * FROM tb_noticias ORDER BY data_p DESC LIMIT $inicio, $qtd_item";
+                    
+                    $result = mysqli_query($conn, $sql);
+
+                    while($exibe = mysqli_fetch_array($result)){
+
                         if(!isset($_SESSION['numLogin'])){
-                            echo "<a class='ult_pg' href='noticias.php?pagina=$qtd_pg'>Último</a>";
+                            
+                            echo "<div class='breve-vaga1'>";
+
+                                echo "
+                                <div class='img-vaga'>
+
+                                    <a href='noticia-em-destaque.php?id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
+
+                                </div>
+                                <div class='desc-vaga'>
+                                    <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
+                                    <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
+                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
+                                    <p><a href='noticia-em-destaque.php?id=".$exibe['id']."'>Ver mais</a></p>
+                                </div>
+                                <div class='clear'></div>
+                            </div><!--FIM DA DIV BREVE-VAGA -->";
+
                         }else{
-                            echo "<a class='ult_pg' href='noticias.php?num=".$_SESSION['numLogin']."&pagina=$qtd_pg'>Último</a>";
+
+                            echo "<div class='breve-vaga1'>";
+
+                                echo "
+                                <div class='img-vaga'>
+                                    <a href='noticia-em-destaque.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'><img src=".$exibe['capa']."></a>
+
+                                </div>
+                                <div class='desc-vaga'>
+                                    <h3 class='titulo_vaga'><a href='#'>".ucwords($exibe['titulo'])."</a></h3>
+                                    <p><b>Data da postagem: </b>".date("d/m/Y", strtotime($exibe['data_p']))."</p>
+                                    <p><b>Descrição:</b> ".reduzindoTexto($exibe['conteudo'])." ...</p>
+                                    <p><a href='noticia-em-destaque.php?num=".$_SESSION['numLogin']."&id=".$exibe['id']."'>Ver mais</a></p>
+                                </div>
+                                <div class='clear'></div>
+                            </div><!--FIM DA DIV BREVE-VAGA -->";
+
                         }
+                    }
+                    echo "<div class='paginacao'>";
+                    //Contando quantos resultados tem na tabela
+                    $result_pg = "SELECT COUNT(id) AS num_result FROM tb_noticias";
+                    //Executando a query
+                    $query = mysqli_query($conn, $result_pg);
+                    //Transformando em array
+                    $result = mysqli_fetch_assoc($query);
+
+                     /* Idêntifica a primeira página */  
+                     $primeira_pagina = 1; 
+
+                     //Arredonadando a quantidade de paginas
+                     $qtd_pg = ceil($result['num_result'] / $qtd_item);
+ 
+ 
+                     /*Cálcula qual será a página anterior em relação a página atual em exibição*/
+                     $pag_ant = ($pagina > 1) ? $pagina -1 : 0;
+ 
+                     /*Cálcula qual será a pŕoxima página em relação a página atual em exibição*/
+                     $pag_prox = ($pagina < $qtd_pg) ? $pagina +1 : 0;
+ 
+                     /* Cálcula qual será a página inicial do nosso range */    
+                     $range_inicial = (($pagina - RANGE_PAGINAS) >= 1) ? $pagina - RANGE_PAGINAS : 1 ;   
+                     
+                     /* Cálcula qual será a página final do nosso range */    
+                     $range_final = (($pagina + RANGE_PAGINAS) <= $qtd_pg ) ? $pagina + RANGE_PAGINAS : $qtd_pg;  
+ 
+                      /* Verifica se vai exibir o botão "Primeiro" e "Pŕoximo" */   
+                     $exibir_botao_inicio = ($range_inicial < $pagina) ? 'mostrar' : 'esconder'; 
+    
+                     /* Verifica se vai exibir o botão "Anterior" e "Último" */   
+                     $exibir_botao_final = ($range_final > $pagina) ? 'mostrar' : 'esconder';  
+ 
+                     if(!isset($_SESSION['numLogin'])){
+                      
+                         echo " <a class='$exibir_botao_inicio' href='noticias.php?page=$primeira_pagina' title='Primeira Página'>Primeira</a>    
+                         <a class='$exibir_botao_inicio' href='noticias.php?page=$pag_ant' title='Página Anterior'>Anterior</a>";
+                     }else{
                         
-                        echo "</div>";
+                         echo "<a class='$exibir_botao_inicio' href='noticias.php?num=".$_SESSION['numLogin']."&page=$primeira_pagina' title='Primeira Página'>Primeira</a>    
+                         <a class='$exibir_botao_inicio' href='noticias.php?num=".$_SESSION['numLogin']."&page=$pag_ant' title='Página Anterior'>Anterior</a>";
+                     }
+ 
+                     /* Loop para montar a páginação central com os números */   
+                     for ($i=$range_inicial; $i <= $range_final; $i++){
+ 
+                         $destaque = ($i == $pagina) ? 'destaque' : ' ' ;  
+                         
+                         if(!isset($_SESSION['numLogin'])){
+                        
+                             echo "<a class='num_pg $destaque' href='noticias.php?page=$i'>$i</a>";
+                         
+                         }else{
+     
+                             echo "<a class='num_pg $destaque' href='noticias.php?num=".$_SESSION['numLogin']."&page=$i'>$i</a>";
+                         }
+  
+                     }
+ 
+                     if(!isset($_SESSION['numLogin'])){
+                        
+                         echo " <a class='$exibir_botao_final' href='noticias.php?page=$pag_prox' title='Próxima Página'>Próxima</a>    
+                         <a class='$exibir_botao_final' href='noticias.php?page=$qtd_pg' title='Última Página'>Último</a>";
+                     
+                     }else{
+ 
+                         echo " <a class='$exibir_botao_final' href='noticias.php?num=".$_SESSION['numLogin']."&page=$pag_prox' title='Próxima Página'>Próxima</a>    
+                         <a class='$exibir_botao_final' href='noticias.php?num=".$_SESSION['numLogin']."&page=$qtd_pg' title='Última Página'>Último</a>";
+                  
+                     }
+ 
+                    echo "</div>";
                     ?>
 
                 </div>
@@ -191,7 +231,6 @@
 
                 <!--Pesquisa lateral -->
                 <div class="form-lateral">
-                    <h2>Buscar vagas</h2>
                     <!--Fazer o back-end -->
                     <?php 
 
@@ -240,7 +279,7 @@
                 <!--Formulário lateral -->
                 <aside class='lateral'>
                         <div class="form-lateral">
-                            <h2>Receba as vagas de sua preferência</h2>
+                            <h2>Receba vagas de sua preferência</h2>
                             <!--Fzer o back end -->
                             <form action="envio-vagas.php" method="post">
                                 <label for="id_nome">Nome:</label>
@@ -259,31 +298,30 @@
                                 <input type="submit" name="f_submit_email" value="Enviar">
                             </form>
                             <?php 
-                                require_once __DIR__."/config/conx.php";
-                                //Obter dados do formulario
-                                if(isset($_POST['f_submit_email'])){
+                            require_once __DIR__."/config/conx.php";
+                            //Obter dados do formulario
+                            if(isset($_POST['f_submit_email'])){
 
-                                    $nome = $_POST['f_nome_e'];
-                                    $email = $_POST['f_email_e'];
-                                    $tipo = $_POST['f_tipo_e'];
+                                $nome = $_POST['f_nome_e'];
+                                $email = $_POST['f_email_e'];
+                                $tipo = $_POST['f_tipo_e'];
 
-                                    //Gravar no banco de dados
-                                    $sql_email = "INSERT INTO envio_email(nome_e, email_e, tipo_e) value('$nome', '$email', '$tipo')";
-                                    
-                                    $query1 = mysqli_query($conn, $sql_email);
-                                    
-                                    $result1 = mysqli_affected_rows($conn);
-
-                                    if($result1 >= 1){
-                                        
-                                        echo "<p class='mensagemEmail'>Email cadastrado com Sucesso!</p>";
-                                    
-                                    }else {
-
-                                        echo "<p class='mensagemEmail'>Não foi possivel gravar email!</p>";
-                                    }
-                                }
+                                //Gravar no banco de dados
+                                $sql_email = "INSERT INTO envio_email(nome_e, email_e, tipo_e) value('$nome', '$email', '$tipo')";
                                 
+                                $query1 = mysqli_query($conn, $sql_email);
+                                
+                                $result1 = mysqli_affected_rows($conn);
+
+                                if($result1 >= 1){
+                                    
+                                    echo "<p class='mensagemEmail'>Email cadastrado com Sucesso!</p>";
+                                
+                                }else {
+
+                                    echo "<p class='mensagemEmail'>Não foi possivel gravar email!</p>";
+                                }
+                            }
                                 
                             ?>
                         </div>
